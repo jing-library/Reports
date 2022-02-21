@@ -1,5 +1,5 @@
 ---
-title: "Journal"
+title: "Monthly Reports"
 output:
   html_document:
     toc: true
@@ -19,19 +19,46 @@ IMPORTANT: You can delete everything in here and start fresh. You might want to 
 
 This is an .Rmd file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a \# in front of your text, it will create a top level-header.
 
-# My first post
+# January 2022
 
-2018 | 7 | 23 Last compiled: `r Sys.Date()`
 
-Notice that whatever you define as a top level header, automatically gets put into the table of contents bar on the left. 
+## Website Updates & Others
 
-## Second level header
+* Black Culture Center Library website started off
+* Requested UX tests for the pages Personal Librarians and Software List - reviewed and discussed the test plan
+* Maintained job posts, staff directory, and org charts
+* Updated the Open Access Award Recipients page
+* Helped styling of the chat widget on the OneSearch page
+* Updated links to the Development Leave forms
+* Updated Arch Library floor plans
+* Fixed some broken links
+* Confirm the renewal of ESI Application Registrations
+* Responded to the UX report on the Personal Librarian's page
 
-You can add more headers by adding more hashtags. These won't be put into the table of contents
+## Meetings / Workshops / Training Attended
+* Software Carpentry II: Programming with Python by Virginia Tech Libraries
+* Software Carpentry II: Programming with R and RStudio by Virginia Tech Libraries
+* Library Faculty Meeting
+* TX-CARP Monthly Meeting - information collection, 4 possible carpentry workshops
+* Unit Meeting
 
-### third level header
 
-Here's an even lower level header
+## Research
+* Reviewed the data for the book chapter on OA publishing
+* Final revision of the paper "Applications, Issues and Reflection on Altmetrics" per editor's request
+
+## Service
+* FSC regular meetings, reference check, and phone interviews
+* Code4Lib Conf Program Committee meetings - review and schedule programs
+* CFSA Events (New Year Celebration) preparation and website updates 
+* IFLA SE section monthly meeting - section website updates and programs for the upcoming WLIC 2022
+* CALA membership database maintanance
+
+## Others
+* R workshops preparation, rehearsals, and deliveries (updated LibGuides)
+* Annual Review
+* Triaged and responded emails to the website
+
 
 # My second post (note the order)
 
