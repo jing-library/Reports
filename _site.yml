@@ -1,0 +1,11 @@
+name: "Reports"
+navbar:
+  title: "Reports"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Monthly Reports"
+      href: MonthlyReports.html
+    - text: "Stats"
+      href: Stats.html
+output_dir: "reports"
