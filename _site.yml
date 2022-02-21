@@ -8,4 +8,4 @@ navbar:
       href: MonthlyReports.html
     - text: "Stats"
       href: Stats.html
-output_dir: "reports"
+output_dir: "docs"
