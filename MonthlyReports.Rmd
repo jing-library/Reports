@@ -1,5 +1,5 @@
 ---
-title: "Monthly Reports"
+title: "2022 Monthly Reports"
 output:
   html_document:
     toc: true
@@ -24,13 +24,13 @@ This is an .Rmd file. It is plain text with special features. Any time you write
 
 ## Website Updates & Others
 
-* Black Culture Center Library website started off
-* Requested UX tests for the pages Personal Librarians and Software List - reviewed and discussed the test plan
-* Maintained job posts, staff directory, and org charts
-* Updated the Open Access Award Recipients page
-* Helped styling of the chat widget on the OneSearch page
-* Updated links to the Development Leave forms
-* Updated Arch Library floor plans
+* [Black Culture Center Library website](https://www.depts.ttu.edu/library/bcclibrary/) started off
+* Requested UX tests for the pages [Personal Librarians](https://www.depts.ttu.edu/library/research-support/personalLibrarians/) and [Software List](https://apps.lib.ttu.edu/services/technology/softOU.php) - reviewed and discussed the test plan
+* Maintained [job posts](https://www.depts.ttu.edu/library/about/employment/), [staff directory](https://www.depts.ttu.edu/library/about/staff/index.php), and [org charts](https://www.depts.ttu.edu/library/about/admin/org_chart/org_charts.php)
+* Updated the [Open Access Award Recipients](https://www.depts.ttu.edu/library/grants/open-access-award/recipients.php) page
+* Helped styling of the chat widget on the [OneSearch](https://ttu-primo.hosted.exlibrisgroup.com/primo-explore/search?institution=01TTU&vid=01TTU&tab=default_tab&search_scope=01TTU_ALL&mode=Basic&displayMode=full&bulkSize=38&highlight=true&dum=true&query=any,contains,&displayField=all) page
+* Updated links to the [Development Leave forms](https://www.depts.ttu.edu/library/libstaff/)
+* Updated [Arch Library floor plans](https://www.depts.ttu.edu/library/about/facility/maps/arch.php)
 * Fixed some broken links
 * Confirm the renewal of ESI Application Registrations
 * Responded to the UX report on the Personal Librarian's page
@@ -50,12 +50,12 @@ This is an .Rmd file. It is plain text with special features. Any time you write
 ## Service
 * FSC regular meetings, reference check, and phone interviews
 * Code4Lib Conf Program Committee meetings - review and schedule programs
-* CFSA Events (New Year Celebration) preparation and website updates 
-* IFLA SE section monthly meeting - section website updates and programs for the upcoming WLIC 2022
-* CALA membership database maintanance
+* CFSA Events (New Year Celebration) preparation and [website](https://www.depts.ttu.edu/cfsa/) updates 
+* IFLA SE section monthly meeting - [section website](https://www.ifla.org/units/statistics-and-evaluation/) updates and programs for the upcoming WLIC 2022
+* CALA membership database maintenance
 
 ## Others
-* R workshops preparation, rehearsals, and deliveries (updated LibGuides)
+* R workshops preparation, rehearsals, and deliveries (updated [LibGuides](https://guides.library.ttu.edu/R4Beginners))
 * Annual Review
 * Triaged and responded emails to the website
 
@@ -150,6 +150,4 @@ print(a)
 
 ```
 
-# Replace this with problem 4
 
-And keep going. Try to solve the problems with different scripts that provide the same solution. Good luck, Happy coding.
