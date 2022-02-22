@@ -28,6 +28,6 @@ This is my monthly reports and web stats.
 <div class="col-sm-6">
 
 
-![](images/1025_hard.jpg)
+![](images/no_psd.jpg)
 
 </div>
