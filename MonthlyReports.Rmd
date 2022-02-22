@@ -53,7 +53,7 @@ Last compiled: `r Sys.Date()`
 ## Others
 * R workshops preparation, rehearsals, and deliveries (updated [LibGuides](https://guides.library.ttu.edu/R4Beginners))
 * Annual Review
-* Triaged and responded emails to the website
+* Triaged and responded emails to the website - 15 queries
 
 
 
