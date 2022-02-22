@@ -4,8 +4,8 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Monthly Reports"
+    - text: "2022 Monthly Reports"
       href: MonthlyReports.html
-    - text: "Stats"
+    - text: "2022 Stats"
       href: Stats.html
 output_dir: "docs"
