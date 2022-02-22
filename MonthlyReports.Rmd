@@ -30,6 +30,7 @@ Last compiled: `r Sys.Date()`
 * Fixed some broken links
 * Confirm the renewal of ESI Application Registrations
 * Responded to the UX report on the Personal Librarian's page
+* Maintained Google Knowledge Panel, the right side box on Google Search results of "TTU Library" 
 
 ## Meetings / Workshops / Training Attended
 * Software Carpentry II: Programming with Python by Virginia Tech Libraries
