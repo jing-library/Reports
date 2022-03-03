@@ -16,7 +16,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 Last compiled: `r Sys.Date()`
 
-# ** February 2022**
+# **February 2022**
 
 ## Website Updates & Others
 * Worked on the draft version of the [Black Culture Center Library website](https://www.depts.ttu.edu/library/bcclibrary/)
