@@ -16,7 +16,49 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 Last compiled: `r Sys.Date()`
 
-# January 2022
+# ** February 2022**
+
+## Website Updates & Others
+* Worked on the draft version of the [Black Culture Center Library website](https://www.depts.ttu.edu/library/bcclibrary/)
+* Website updates - fixed some broken links, updated job posts, org charts, directory, donation links, 
+* Request access for people from access and arch lib
+* Responded to the suggestions on the [Software List](https://apps.lib.ttu.edu/services/technology/softOU.php), consulting the Library IT and the Technology Team
+* Confirmed the renewal of ESI Application Registrations
+
+
+## Meetings / Workshops / Training Attended
+* Library Faculty Special Meeting
+* IFLA SE Monthly Meeting: SE website, upcoming WLIC in July
+* Attended Making an Impact with Data Visualization - by UNC Libraries Research Hub
+* UX Team meeting - sharing the updates of the [Software List](https://apps.lib.ttu.edu/services/technology/softOU.php) page
+* Discussion on [Black Culture Center Library website](https://www.depts.ttu.edu/library/bcclibrary/)
+* Attended Spreadsheets and OpenRefine [Data & Donuts Workshop] by UT Austin Libraries
+* UK Carpentry Community Monthly Meeting - for information about the Carpentries Collaborative Lesson Development Training - proposed a project to the program after the meeting. The training probably starts in this June and followed with a 2-month course development and an evaluation/wrap-up. 
+* Information session of the project - On the Books organized by the UNC Libraries
+
+## Research
+* Worked on the draft version of the book chapter for Data driven OA Initiative
+* Preparing poster proposal for the IFLA WLIC 2022
+* Data-related courses on 2021-2022 course catalog - information collection and analysis
+
+## Service
+* CFSA Event (New Year Celebration) and meeting
+* Faculty Search Committee - Search for the Research Services Librarian: three onsite interviews
+* Reviewed Code4Lib 2022 Conf. schedule
+* CALA membership database maintenance - membership renewal for a group, membership scholarship updates
+* Started to review a chapter for the book Everyday Evidence Book.
+
+
+## Others
+* R workshop preparation, rehearsal, and delivery
+* Help the Tableau workshop
+* Triaged and responded emails to the website - 15 queries (the same as Jan)
+* Read books and watch videos on R and R training
+
+
+
+
+# **January 2022**
 
 ## Website Updates & Others
 
@@ -55,6 +97,8 @@ Last compiled: `r Sys.Date()`
 * R workshops preparation, rehearsals, and deliveries (updated [LibGuides](https://guides.library.ttu.edu/R4Beginners))
 * Annual Review
 * Triaged and responded emails to the website - 15 queries
+* Office rekeyed
+
 
 
 

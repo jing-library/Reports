@@ -17,9 +17,9 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **Reprots**
+# **Reports**
 
-This is my monthly reports and web stats.
+Monthly reports and web stats.
 
 
 
