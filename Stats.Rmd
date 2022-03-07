@@ -6,9 +6,9 @@ output: html_document
 # OA Stats
 
 ```{r}
-# install.packages("qwraps2")
-# install.packages("gt")
-install.packages("pivottabler")
+# install.packages("qwraps2") # not used
+# install.packages("gt") # not used
+# install.packages("pivottabler")
 library(tidyverse)
 library(pivottabler)
 
