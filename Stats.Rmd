@@ -3,15 +3,53 @@ title: "Stats"
 output: html_document
 ---
 
-
-```{r}
-samples <- rnorm(100, mean=0, sd=1)
-hist(samples)
-```
-
 # OA Stats
 
+```{r}
+# install.packages("qwraps2")
+# install.packages("gt")
+install.packages("pivottabler")
+library(tidyverse)
+library(pivottabler)
 
+oa_stats_march <- read_csv("data/oa_stats_20220301_clean.csv")
+
+# qhpvt(oa_stats_march, c("is_oa","oa_status"), "Year", "n()") this code works for count, but not for percentage
+
+
+
+
+oa4pivot <- oa_stats_march %>% 
+  group_by(Year) %>% 
+  count(is_oa, oa_status) %>% 
+  mutate(percent = 100*n/sum(n)) %>%
+  ungroup() 
+
+oa4pivot$is_oa <- as.character(oa4pivot$is_oa)  
+
+oa4pivot %>%   
+  qhpvt(
+    c("is_oa","oa_status"), 
+    "Year", 
+    c("Count" = "sum(n)", "%" = "sum(percent)"),
+    formats = list("%.0f", "%.2f"),
+    totals = list("is_oa" = "Total", "oa_status" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+
+# not sure how to remove the Total column for Year
+# pt <- PivotTable$new()
+# pt$addData(oa4pivot)
+# pt$addColumnDataGroups("Year")
+# pt$addRowDataGroups("is_oa", 
+#                     outlineTotal=list(groupStyleDeclarations=list(color="black")))
+# pt$addRowDataGroups("oa_status",
+#                     outlineTotal=list(groupStyleDeclarations=list(color="black")))
+# pt$defineCalculation(calculationName = "count", summariseExpression = "sum(n)")
+# pt$defineCalculation(calculationName = "%", summariseExpression = "round(sum(percent))")
+# pt$renderPivot()
+
+```
 
 
 # Web Stats

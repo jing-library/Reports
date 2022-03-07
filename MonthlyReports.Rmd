@@ -28,7 +28,6 @@ Last compiled: `r Sys.Date()`
 
 ## Meetings / Workshops / Training Attended
 * Library Faculty Special Meeting
-* IFLA SE Monthly Meeting: SE website, upcoming WLIC in July
 * Attended Making an Impact with Data Visualization - by UNC Libraries Research Hub
 * UX Team meeting - sharing the updates of the [Software List](https://apps.lib.ttu.edu/services/technology/softOU.php) page
 * Discussion on [Black Culture Center Library website](https://www.depts.ttu.edu/library/bcclibrary/)
@@ -47,6 +46,7 @@ Last compiled: `r Sys.Date()`
 * Reviewed Code4Lib 2022 Conf. schedule
 * CALA membership database maintenance - membership renewal for a group, membership scholarship updates
 * Started to review a chapter for the book Everyday Evidence Book.
+* IFLA SE Monthly Meeting: SE website, upcoming WLIC in July
 
 
 ## Others
