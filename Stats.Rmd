@@ -5,7 +5,7 @@ output: html_document
 
 # OA Stats
 
-```{r}
+```{r, echo=FALSE}
 # install.packages("qwraps2") # not used
 # install.packages("gt") # not used
 # install.packages("pivottabler")
@@ -16,16 +16,13 @@ oa_stats_march <- read_csv("data/oa_stats_20220301_clean.csv")
 
 # qhpvt(oa_stats_march, c("is_oa","oa_status"), "Year", "n()") this code works for count, but not for percentage
 
-
-
-
 oa4pivot <- oa_stats_march %>% 
   group_by(Year) %>% 
-  count(is_oa, oa_status) %>% 
-  mutate(percent = 100*n/sum(n)) %>%
+  count(is_oa, oa_status) %>%  
+  mutate(percent = 100*n/sum(n)) %>%   # calculate the percentage
   ungroup() 
 
-oa4pivot$is_oa <- as.character(oa4pivot$is_oa)  
+oa4pivot$is_oa <- as.character(oa4pivot$is_oa)  #convert is_oa from logic to character
 
 oa4pivot %>%   
   qhpvt(
