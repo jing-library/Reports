@@ -62,6 +62,30 @@ oa4pivot %>%
 # pt$renderPivot()
 
 ```
+```{r echo=FALSE}
+citations <- oa_stats_march
+citations$Cited_by[is.na(citations$Cited_by) == TRUE] <- 0
+citations$is_oa <- as.character(citations$is_oa)  #convert is_oa from logic to character
+
+citations %>% 
+  group_by(Year, oa_status) %>% 
+  mutate(citations_per_paper = round(sum(Cited_by)/n())) %>%   # added a new column the citations per paper
+  select(Year, is_oa, oa_status, Cited_by, citations_per_paper) %>%  
+  ungroup() %>%  
+  qhpvt(
+    c("is_oa", "oa_status"), 
+    "Year", 
+    c("Count" = "n()", "Citations Per Paper" = "sum(citations_per_paper)/n()"),
+    formats = list("%.0f", "%.0f"),
+    totals = list("oa_status" = "Total", "Year" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+
+
+```
+
+
+
 Comparing the OA status information from Scopus and Unpaywall:
 * The OA count were almost the same;
 * The count of each specific OA status were different, need to choose one source to track the trends. I suggested we use Scopus data only.
