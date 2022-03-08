@@ -87,6 +87,7 @@ citations %>%
 
 
 Comparing the OA status information from Scopus and Unpaywall:
+
 * The OA count were almost the same;
 * The count of each specific OA status were different, need to choose one source to track the trends. I suggested we use Scopus data only.
 * The **overall journal article OA percentage was 45%** and **conference proceedings was around 10%**. 
