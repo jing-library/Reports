@@ -8,4 +8,6 @@ navbar:
       href: MonthlyReports.html
     - text: "2022 Stats"
       href: Stats.html
+    - text: "Stats Related"
+      href: StatsRelated.html
 output_dir: "docs"
