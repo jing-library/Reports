@@ -115,8 +115,8 @@ citations %>%
 
 pageviews <- read_csv("data/pageviews.csv")
 
-pageviews %>% 
-  qhpvt("Name", "Year", "sum(Pageviews)")
+# pageviews %>% 
+#   qhpvt("Name", "Year", "sum(Pageviews)")
 
 
 pt <- PivotTable$new()
@@ -131,7 +131,9 @@ pt$sortRowDataGroups(
   sortOrder = "desc",
   calculationGroupName = "default"
 )
+#pt$asDataFrame()
 pt$renderPivot()
+
 
 ```
 
