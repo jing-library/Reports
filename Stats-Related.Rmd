@@ -1,0 +1,20 @@
+---
+title: "Stat-Related"
+author: "Jingjing Wu"
+date: "3/9/2022"
+output: html_document
+---
+
+# OA Stats
+
+## Steps
+
+1. Collected bibliographic records of articles, conf papers, reviews, books and book chapters which were affiliated with Texas Tech University and published in the years 2016 through 2020 on March 1st, 2022 and retrieved 10,498 records. 
+
+The search query was 
+
+> AF-ID(“Texas Tech University” 60021285) OR AF-ID(“Rawls College of Business” 60123664) AND ( LIMIT-TO ( PUBYEAR,2020) OR LIMIT-TO ( PUBYEAR,2019) OR LIMIT-TO ( PUBYEAR,2018) OR LIMIT-TO ( PUBYEAR,2017) OR LIMIT-TO ( PUBYEAR,2016) ) AND ( LIMIT-TO ( DOCTYPE,”ar” ) OR LIMIT-TO ( DOCTYPE,”cp” ) OR LIMIT-TO ( DOCTYPE,”re” ) OR LIMIT-TO ( DOCTYPE,”ch” ) OR LIMIT-TO ( DOCTYPE,”bk” ) )
+
+2. Removed records with duplicated DOIs or without DOIs and cleared some author IDs. Only 9,819 records kept. 
+
+3. Populated OA information through the Unpaywall API on March 1st and 2nd. 
