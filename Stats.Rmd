@@ -5,6 +5,18 @@ output: html_document
 
 # OA Stats
 
+## Findings
+
+Comparing the OA status information from Scopus and Unpaywall:
+
+* The OA count were almost the same;
+* The count of each specific OA status were different, need to choose one source to track the trends. I suggested we use Scopus OA data.
+* The **overall journal article OA percentage was 45%** and **conference proceedings was around 10%**. 
+* **Citations per paper** for closed publication were **10**; while for **green or gold OA publications** were around **20**. 
+* Scopus updates its data constantly. The data retrieved on March 1st and March 3rd using the same query were a little bit different. Next month, I will try to use the **Scopus API** to track the OA status and citations for the data set of 10,498 records (retrieved on March 1st, 2022). 
+
+## Steps
+
 1. Collected bibliographic records of articles, conf papers, reviews, books and book chapters which were affiliated with Texas Tech University and published in the years 2016 through 2020 on March 1st, 2022 and retrieved 10,498 records. 
 
 The search query was 
@@ -62,6 +74,7 @@ oa4pivot %>%
 # pt$renderPivot()
 
 ```
+The table below showed the citations per paper by OA status and year: 
 ```{r echo=FALSE}
 citations <- oa_stats_march
 citations$Cited_by[is.na(citations$Cited_by) == TRUE] <- 0
@@ -84,13 +97,45 @@ citations %>%
 
 ```
 
+# Web Stats - Comparing Jan and Feb of the four years from 2019 to 2022
+
+## Findings - from Google Analytics
+**The overall usage of website increases comparing with the same time period of 2021, but has not come back to the level of 2019 and 2020 (pre-pandemic). **
+
+**Home page clicks - Search area still takes 50-55% of all the clicks on the homepage; **
+
+**Home page clicks - The label [object HTMLDivElement]tab_overlay[object Object] takes over 7% of the clicks but could not identify the element. Probably this label is for some spots on the search boxes. If true, the search box area got over 60% of the clicks. Need to follow up with this label. **
 
 
-Comparing the OA status information from Scopus and Unpaywall:
+* Browsers: 65-70% sessions used Chrome; usage of Safari was slightly increased
+* Channels: The percentage of sessions which came through organic searches increased from 43% to 60% in 2021 and 58% in 2022. Even before COVID-19, we saw increased use of organic search to the library web pages. The pandemic accelerated this trend. 
+* Devices: Sessions using desktop have gradually moved to mobile during 2019 through 2021. But 2022 witnessed a jump from 9% to 13% in mobile and a drop from 90% to 84% in desktop. Will follow up to see if it is a new trend. 
 
-* The OA count were almost the same;
-* The count of each specific OA status were different, need to choose one source to track the trends. I suggested we use Scopus data only.
-* The **overall journal article OA percentage was 45%** and **conference proceedings was around 10%**. 
-* Another finding - Scopus updates its data constantly. The data retrieved on March 1st and March 3rd using the same query were a little bit different. Next month, I will try to use the Scopus API to track the OA status and citations for the data set of 10,498 records (retrieved on March 1st, 2022). 
+```{r echo=FALSE}
 
-# Web Stats
+pageviews <- read_csv("data/pageviews.csv")
+
+pageviews %>% 
+  qhpvt("Name", "Year", "sum(Pageviews)")
+
+
+pt <- PivotTable$new()
+pt$addData(pageviews)
+pt$addColumnDataGroups("Year")
+pt$addRowDataGroups("Name", 
+                    outlineTotal=list(groupStyleDeclarations=list(color="black")))
+pt$defineCalculation(calculationName = "TotalViews", summariseExpression = "sum(Pageviews)")
+pt$sortRowDataGroups(
+  levelNumber = 1,
+  orderBy = "calculation",
+  sortOrder = "desc",
+  calculationGroupName = "default"
+)
+pt$renderPivot()
+
+```
+
+## Findings - From Google Business Profile
+* The library profile received 4 reviews on Google Reviews - two 5-star and two 4-star ratings
+* profile views: Jan - 17,910; Feb - 24,093. Will keep tracking the profile views.
+
