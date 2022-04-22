@@ -22,9 +22,9 @@ Last compiled: `r Sys.Date()`
 ## Website
 * Updated jobs, directory, and org charts pages
 * Updated Emergency Action Plan for the building services
-* Worked on the tutorial video page - meeting RIO and UX, drafted test page
+* Worked on the [tutorial video page](https://www.depts.ttu.edu/library/test/tutorials2.php) - meeting RIO and UX, drafted test page
 * Fixed broken links
-* Meeting with Melissa about current projects (BCC, video tutorial page) and daily maintenance
+* Meeting with Melissa about current projects ([BCC](https://www.depts.ttu.edu/library/bcclibrary/), [video tutorial page](https://www.depts.ttu.edu/library/test/tutorials2.php)) and daily maintenance
 * Updated donation page
 
 
@@ -33,9 +33,9 @@ Last compiled: `r Sys.Date()`
 
 
 ## Research
-* Worked on and submitted poster proposal for IFLA WLIC (accepted)
+* Worked on and submitted poster proposal for [IFLA WLIC](https://2022.ifla.org/) (accepted)
 * Continued reading syllabus of data-related courses
-* Worked on and submitted presentation proposal for the LILi conference
+* Worked on and submitted presentation proposal for the [LILi conference](https://lili.libguides.com/lili)
 
 
 ## Service
