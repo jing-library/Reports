@@ -10,8 +10,133 @@ output:
 ---
 
 # OA Stats
+This section is to track the OA status and citation counts of publications by the Tech authors with the publication dates from 2016 through 2020. 
 
-## Findings
+## April
+
+Both Scopus API and the application Scopus are used to retrieve the OA status and citation counts. The same data set as last month was used to acquire data through Scopus API. The application Scopus can find not only items moved out of Scopus but new items added to Scopus. The application Scopus will be used from May and the March data will be used as the benchmark for comparison. 
+
+\newline
+
+* Number of records
+    * The search of 03/01/2022 kept 9,819 records after removing those with duplicated  or missing DOIs.
+    * The search of 04/19/2022 kept 9,854 records. Comparing with the data from last month, 11 records were moved out from the Scopus databases and 46 records were added. The total data change was around 0.6% this month. 
+    
+* OA Status
+
+The total number of OA records *decreased 22* comparing with that of March. The total number of green OA records *decreased 11*. Even though it is not a dramatic change, it does not make any sense. 
+
+```{r, echo=FALSE}
+library(tidyverse)
+
+scopus_202203_1 <- read_csv("data/scopus_2016_20220301.csv")
+scopus_202203_2 <- read_csv("data/scopus_2017_20220301.csv")
+scopus_202203_3 <- read_csv("data/scopus_2018_20220301.csv")
+scopus_202203_4 <- read_csv("data/scopus_2019_20220301.csv")
+scopus_202203_5 <- read_csv("data/scopus_2020_20220301.csv")
+
+# combine all the 5 files into 1
+scopus_march <- rbind(scopus_202203_1, scopus_202203_2, scopus_202203_3, scopus_202203_4, scopus_202203_5)
+
+# select only columns relevant
+scopus_march <- scopus_march[c(1,3,4,5,12,13,15:17,19)]
+
+# test <- filter(scopus_march, !is.na(DOI)) # remove records with missing DOIs
+
+# remove records with duplicated DOIs, several solutions on the page - https://stackoverflow.com/questions/32259620/how-to-remove-unique-entry-and-keep-duplicates-in-r
+
+# solution 1 - the following 2 lines, but do not understand
+# test_2 <- test[unlist(tapply(1:nrow(test), test$DOI, function(x) if (length(x) > 1)x)), ]
+# test <- test %>% anti_join(test_2)
+
+# solution 2 
+# test_4 <- test[!test$DOI %in% test$DOI[duplicated(test$DOI)],]
+
+# solution 3 - cannot use == or != here, but do not understand why
+# test_5 <- filter(test, !DOI %in%  DOI[duplicated(DOI)])
+
+# solution 4 
+# test_6 <- test %>% group_by(DOI) %>% filter(n() == 1)
+
+
+# remove rows with missing or duplicated DOIs
+scopus_march <- scopus_march %>% 
+  filter(!is.na(DOI)) %>% 
+  filter(!DOI %in% DOI[duplicated(DOI)])
+
+scopus_april <- read_csv("data/scopus_20220419.csv")
+
+
+# select only columns relevant
+scopus_april <- scopus_april[c(1,3,4,5,12,13,15:17,19)]
+
+scopus_april <- scopus_april %>% 
+  filter(!is.na(DOI)) %>% 
+  filter(!DOI %in% DOI[duplicated(DOI)])
+
+removed <- anti_join(scopus_march, scopus_april, by = "DOI") # records removed from March
+
+removed %>%
+  select(`Source title`, Year, `Publication Stage`, `Open Access`)
+
+added <- anti_join(scopus_april, scopus_march, by = "DOI") # new records in April
+
+added %>% 
+  select(`Source title`, Year, `Publication Stage`, `Open Access`) %>% 
+  arrange(`Source title`)
+
+main <- inner_join(scopus_march, scopus_april, by = "DOI")
+main <- main[-c(11:14, 16, 17, 19)]
+
+names(main)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_march", "DOI", "doc_type", "pub_stage", "oa_status_march", "EID", "citations_april", "oa_status_april")
+
+main$oa_status_march[is.na(main$oa_status_march)] <- "Closed"
+main$oa_status_april[is.na(main$oa_status_april)] <- "Closed"
+
+oa_status_change <- main %>% 
+  select(title, source_title, year, oa_status_march, oa_status_april) %>% 
+  filter(main$oa_status_march != main$oa_status_april) %>% 
+  arrange(source_title)
+
+main$citations_march[is.na(main$citations_march)] <- 0
+main$citations_april[is.na(main$citations_april)] <- 0
+
+citations_change <- main %>% 
+  select(title, source_title, year, citations_march, citations_april) %>% 
+  mutate(citations_diff = citations_april - citations_march, 
+         citations_percentage = ifelse(
+           citations_march != 0, (citations_april - citations_march)*100 / citations_march, ifelse(citations_march == 0, NA, 999))) %>% 
+  arrange(desc(citations_diff), desc(citations_percentage))
+
+citations_error <- citations_change %>% 
+  select(title, source_title, year, citations_march, citations_april, citations_diff) %>% 
+  filter(citations_diff < 0)
+
+top_500_diff <- main %>% 
+  select(title, source_title, year, citations_march, citations_april) %>% 
+  mutate(citations_diff = citations_april - citations_march, 
+         citations_percentage = ifelse(
+           citations_march != 0, (citations_april - citations_march)*100 / citations_march, ifelse(citations_march == 0, NA, 999))) %>% 
+  arrange(desc(citations_diff)) %>% 
+  head(400)
+
+top_500_diff_percentage <- main %>% 
+  select(title, source_title, year, citations_march, citations_april) %>% 
+  mutate(citations_diff = citations_april - citations_march, 
+         citations_percentage = ifelse(
+           citations_march != 0, (citations_april - citations_march)*100 / citations_march, ifelse(citations_march == 0, NA, 999))) %>% 
+  arrange(desc(citations_percentage)) %>% 
+  head(400)
+
+top_increase <- inner_join(top_500_diff, top_500_diff_percentage)
+
+```
+    
+* Citations per Paper
+
+Total citations increase with no double. The citations per paper for OA publications were around 29 while that for non-OA publications was about 10. 
+
+## March
 
 Comparing the OA status information from Scopus and Unpaywall:
 
@@ -21,7 +146,8 @@ Comparing the OA status information from Scopus and Unpaywall:
 * **Citations per paper** for closed publication were **10**; while for **green or gold OA publications** were around **20**. 
 * Scopus updates its data constantly. The data retrieved on March 1st and March 3rd using the same query were a little bit different. Next month, I will try to use the **Scopus API** to track the OA status and citations for the data set of 10,498 records (retrieved on March 1st, 2022). 
 
-## Tables
+<br><br>
+
 The following table shows the count and percentage by OA status and year.
 
 ```{r, echo=FALSE}
@@ -94,8 +220,11 @@ citations %>%
 
 Comparing Jan and Feb of the four years from 2019 to 2022
 
-## Findings from Google Analytics
+## Google Analytics
 
+### March
+
+### Feb
 **The overall usage of website increases comparing with the same time period of 2021, but has not come back to the level of 2019 and 2020 (pre-pandemic). **
 
 **Home page clicks - The label [object HTMLDivElement]tab_overlay[object Object] takes over 7% of the clicks but I could not identify the element. Probably this label is for some spots on the search boxes. If true, the search box area got over 60% of the clicks. Need to follow up with this label. **
@@ -131,7 +260,7 @@ pt$renderPivot()
 
 ```
 
-## Findings from Google Business Profile
+## Google Business Profile
 
 * The library profile received 4 reviews on Google Reviews - two 5-star and two 4-star ratings
 * profile views: Jan - 17,910; Feb - 24,093. Will keep tracking the profile views.
