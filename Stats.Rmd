@@ -129,7 +129,10 @@ green_added <- oa_status_change %>%
 
 green_removed <- oa_status_change %>% 
   filter(str_detect(oa_status_march, "Green") & !str_detect(oa_status_april, "Green"))
+```
+OA Status Data Retrieved on April 19 (Scopus Application)
 
+```{r, echo=FALSE}
 # OA status in April
 main %>% 
   separate(oa_status_april, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
@@ -146,7 +149,10 @@ main %>%
     totals = list("is_oa" = "Total", "oa_status" = "Total"),
     totalStyle = list("font-weight"="bold")
     )
+```
+OA Status Data Retrieved on March 1 (Scopus Application)
 
+```{r, echo=FALSE}
 # OA status in March
 main %>% 
   separate(oa_status_march, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
@@ -216,8 +222,10 @@ top_400_diff_percentage <- main %>%
   head(400)
 
 top_increase <- inner_join(top_400_diff, top_400_diff_percentage)
+```
 
-
+Citations Data Retrieved on April 19 (Scopus Application)
+```{r, echo=FALSE}
 # Citations per Paper in April
 main %>% 
   separate(oa_status_april, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
@@ -234,8 +242,11 @@ main %>%
     totals = list("oa_status" = "Total", "Year" = "Total"),
     totalStyle = list("font-weight"="bold")
     )
-  
- # Citations per Paper in March
+```
+Citations Data Retrieved on March 1 (Scopus Application)
+
+```{r, echo=FALSE}
+# Citations per Paper in March
 main %>% 
   separate(oa_status_march, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
   replace_na(list(oa_status = "Closed")) %>% 
@@ -347,13 +358,16 @@ Comparing Jan and Feb of the four years from 2019 to 2022
 ### March
 
 #### Overview
-Comparing with the pandemic time, Jan through March of 2021(blue line), the website visits **increased around 20% in 2022**. The current page views are still **20-30% lower than those before the COVID-19**. 
 
-The page views of the study spaces page have **tripled to nearly 10,000 since 2019**. The mobile visits increased from 1,000 to about 5,000 now. **The mobile usage takes almost half of the page views of this page**. 
+The page views of the **study spaces page** have **tripled to nearly 10,000 since 2019**. The mobile visits increased from 1,000 to about 5,000 now. **The mobile usage takes almost half of the page views of this page**. 
+
+Comparing with the pandemic time, Jan through March of 2021(blue line), the website visits **increased around 20% in 2022**. The current page views are still **20-30% lower than those before the COVID-19**. 
 
 <br>
 ![](images/pageview_jan-mar_2019-2022.png)
+
 *Note*
+
 * The page views of library website fluctuate on a weekly basis. The x-axis uses the date of the year 2022. The page views of other year are switched to match the fluctuation and demo the differences by year.
 * The second half week of 02/05 in 2022 and the week of 02/19 in 2021, the city was hit by winter storms and the campus was closed.
 * The week of 03/12 in 2019 and the week of 03/19 in 2020 & 2022 were spring breaks. 
