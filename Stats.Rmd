@@ -16,16 +16,6 @@ This section is to track the OA status and citation counts of publications by th
 
 Both Scopus API and the application Scopus are used to retrieve the OA status and citation counts. The same data set as last month was used to acquire data through Scopus API. The application Scopus can find not only items moved out of Scopus but new items added to Scopus. The application Scopus will be used from May and the March data will be used as the benchmark for comparison. 
 
-
-* Number of records
-    * The search of 03/01/2022 kept 9,819 records after removing those with duplicated  or missing DOIs.
-    * The search of 04/19/2022 kept 9,854 records. Comparing with the data from last month, 11 records were moved out from the Scopus databases and 46 records were added. The total data change was around 0.6% this month. 
-    
-* OA Status
-
-    * In April, *24 OA items turned to be closed*, and *33 closed items became open access*.
-    * In total, *35 items were added to repositories*, turned to be green, while *14 items lost their "green" status*. 
-
 ```{r, echo=FALSE}
 library(tidyverse)
 library(pivottabler)
@@ -87,29 +77,41 @@ scopus_april <- scopus_april %>%
   replace_na(list(oa_status_april = "Closed", citations_april = 0)) %>% 
   filter(!is.na(DOI)) %>% 
   filter(!DOI %in% DOI[duplicated(DOI)])
+```
+* Number of records
+    * The search of 03/01/2022 kept 9,819 records after removing those with duplicated  or missing DOIs.
+    * The search of 04/19/2022 kept 9,854 records. Comparing with the data from last month, 11 records were moved out from the Scopus databases and 46 records were added. The total data change was around 0.6% this month. 
 
+```{r, echo=FALSE}
 #---- Findings - Number of Items ----
 # records removed from March
 removed <- anti_join(scopus_march, scopus_april, by = "DOI") 
 removed <- removed %>%
-  select(source_title, year, pub_stage, oa_status_march) %>% 
+  select(source_title, year, pub_stage, oa_status_march, DOI) %>% 
   arrange(source_title)
 
 # new records in April
 added <- anti_join(scopus_april, scopus_march, by = "DOI") 
 
 added <- added %>% 
-  select(source_title, year, pub_stage, oa_status_april) %>% 
+  select(source_title, year, pub_stage, oa_status_april, DOI) %>% 
   arrange(source_title)
 
 main <- inner_join(scopus_march, scopus_april, by = "DOI")
 main <- main[-c(11:14, 16, 17, 19)]
 
 names(main)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_march", "DOI", "doc_type", "pub_stage", "oa_status_march", "EID", "citations_april", "oa_status_april")
+```
+* OA Status
 
+    * In April, **24 OA items turned to be closed**, and **33 closed items became open access**.
+    * In total, **35 items were added to repositories**, turned to be green, while **14 items lost their "green" status**. 
+    * The following two tables show the number of publications by year and by OA status. Data of April came first, followed with data of March. All the data retrieved through Scopus application. 
+
+```{r, echo=FALSE}
 #---- Findings - OA Status ----
 oa_status_change <- main %>% 
-  select(title, source_title, year, oa_status_march, oa_status_april) %>% 
+  select(title, source_title, year, oa_status_march, oa_status_april, DOI) %>% 
   filter(main$oa_status_march != main$oa_status_april) %>% 
   arrange(source_title)
 
@@ -119,11 +121,31 @@ open2close <- oa_status_change %>%
 close2open <- oa_status_change %>% 
   filter(oa_status_march == "Closed")
 
+close2green <- oa_status_change %>% 
+  filter(oa_status_march == "Closed" & oa_status_april == "All Open Access, Green")
+  
 green_added <- oa_status_change %>% 
   filter(!str_detect(oa_status_march, "Green") & str_detect(oa_status_april, "Green"))
 
 green_removed <- oa_status_change %>% 
   filter(str_detect(oa_status_march, "Green") & !str_detect(oa_status_april, "Green"))
+
+# OA status in April
+main %>% 
+  separate(oa_status_april, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year) %>% 
+  count(is_oa, oa_status) %>% 
+  mutate(percent = 100*n/sum(n)) %>% 
+  ungroup() %>% 
+  qhpvt(
+    c("is_oa","oa_status"), 
+    "year", 
+    c("Count" = "sum(n)", "%" = "sum(percent)"),
+    formats = list("%.0f", "%.2f"),
+    totals = list("is_oa" = "Total", "oa_status" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
 
 # OA status in March
 main %>% 
@@ -142,25 +164,14 @@ main %>%
     totalStyle = list("font-weight"="bold")
     ) 
 
-# OA status in April
-main %>% 
-  separate(oa_status_april, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
-  replace_na(list(oa_status = "Closed")) %>% 
-  group_by(year) %>% 
-  count(is_oa, oa_status) %>% 
-  mutate(percent = 100*n/sum(n)) %>% 
-  ungroup() %>% 
-  qhpvt(
-    c("is_oa","oa_status"), 
-    "year", 
-    c("Count" = "sum(n)", "%" = "sum(percent)"),
-    formats = list("%.0f", "%.2f"),
-    totals = list("is_oa" = "Total", "oa_status" = "Total"),
-    totalStyle = list("font-weight"="bold")
-    )  
 
+```
+* Citations
+    * Comparing the data of April and March, 3,236 publications got more citations, while *9 items saw a decrease in citation counts*.
+    * No big changes in Citations per Paper (CpP) from March to April. CpP for OA publication was around 28 while that for closed publication was almost 10. 
+    * The following two tables show the Citations per Paper (CpP) by year and by OA status. Data of April came first, followed with data of March. All the data retrieved through Scopus application. 
 
-
+```{r, echo=FALSE}
 #---- Findings - Citation Counts ----
 citations_change <- main %>% 
   select(title, source_title, year, citations_march, citations_april) %>% 
@@ -174,9 +185,19 @@ citations_error <- citations_change %>%
   select(title, source_title, year, citations_march, citations_april, citations_diff) %>% 
   filter(citations_diff < 0)
 
-citations_per_paper_03 <- main %>% 
-  group_by(year) %>% 
-  mutate(citations_per_paper_03 = sum(citations_march)/n()) %>%   select(year, citations_per_paper_03)
+citations_per_paper_04 <- main %>%
+  separate(oa_status_april, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(is_oa) %>% 
+  mutate(CpP_04 = sum(citations_march)/n()) %>% 
+  select(CpP_04)
+
+citations_per_paper_03 <- main %>%
+  separate(oa_status_march, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(is_oa) %>% 
+  mutate(CpP_03 = sum(citations_march)/n()) %>% 
+  select(CpP_03)
 
 top_400_diff <- main %>% 
   select(title, source_title, year, citations_march, citations_april) %>% 
@@ -208,7 +229,7 @@ main %>%
   qhpvt(
     c("is_oa", "oa_status"), 
     "year", 
-    c("Count" = "n()", "Citations Per Paper" = "sum(citations_per_paper)/n()"),
+    c("Count" = "n()", "CpP" = "sum(citations_per_paper)/n()"),
     formats = list("%.0f", "%.0f"),
     totals = list("oa_status" = "Total", "Year" = "Total"),
     totalStyle = list("font-weight"="bold")
@@ -225,23 +246,18 @@ main %>%
   qhpvt(
     c("is_oa", "oa_status"), 
     "year", 
-    c("Count" = "n()", "Citations Per Paper" = "sum(citations_per_paper)/n()"),
+    c("Count" = "n()", "CpP" = "sum(citations_per_paper)/n()"),
     formats = list("%.0f", "%.0f"),
     totals = list("oa_status" = "Total", "Year" = "Total"),
     totalStyle = list("font-weight"="bold")
     ) 
-  
-  
-  
+
+# write_csv(removed, "data_output/removed_april.csv")
+# write_csv(close2green, "data_output/closed2green.csv")
+# write_csv(open2close, "data_output/open2close.csv")
 
 ```
     
-* Citations
-    * Comparing the data of April and March, 3,236 publications got more citations, while *9 items saw a decrease in citation counts*.
-    
-
- 
-
 ## March
 
 Comparing the OA status information from Scopus and Unpaywall:
@@ -330,6 +346,26 @@ Comparing Jan and Feb of the four years from 2019 to 2022
 
 ### March
 
+#### Overview
+Comparing with the pandemic time, Jan through March of 2021(blue line), the website visits **increased around 20% in 2022**. The current page views are still **20-30% lower than those before the COVID-19**. 
+
+The page views of the study spaces page have **tripled to nearly 10,000 since 2019**. The mobile visits increased from 1,000 to about 5,000 now. **The mobile usage takes almost half of the page views of this page**. 
+
+<br>
+![](images/pageview_jan-mar_2019-2022.png)
+*Note*
+* The page views of library website fluctuate on a weekly basis. The x-axis uses the date of the year 2022. The page views of other year are switched to match the fluctuation and demo the differences by year.
+* The second half week of 02/05 in 2022 and the week of 02/19 in 2021, the city was hit by winter storms and the campus was closed.
+* The week of 03/12 in 2019 and the week of 03/19 in 2020 & 2022 were spring breaks. 
+
+#### Organic search vs Direct visit
+* For the most visited pages like study space, ETD, books, personal librarians, doc del, and accounts, over 65% of visits came from organic searches. 
+
+#### Desktop vs Mobile
+* Most pages are still viewed on desktops. 
+* Certain pages have obtained more mobile users. The mobile views of the parking and Wi-Fi pages have increased from around 65% to 77% since 2019.
+* The use of tablets seems declining.
+
 ### Feb
 **The overall usage of website increases comparing with the same time period of 2021, but has not come back to the level of 2019 and 2020 (pre-pandemic). **
 
@@ -337,7 +373,7 @@ Comparing Jan and Feb of the four years from 2019 to 2022
 
 
 * Browsers: 65-70% sessions used Chrome; usage of Safari was slightly increased
-* Channels: The percentage of sessions which came through organic searches increased from 43% to 60% in 2021 and 58% in 2022. Even before COVID-19, we saw increased use of organic search to the library web pages. The pandemic accelerated this trend. 
+* Channels: The percentage of sessions which came through organic searches increased from 43% to 60% in 2021 and 58% in 2022. Even before COVID-19, use of organic search was increasing. The pandemic accelerated this trend. 
 * Devices: Sessions using desktop have gradually moved to mobile during 2019 through 2021. But 2022 witnessed a jump from 9% to 13% in mobile and a drop from 90% to 84% in desktop. Will follow up to see if it is a new trend. 
 
 ```{r echo=FALSE}
@@ -368,6 +404,8 @@ pt$renderPivot()
 
 ## Google Business Profile
 
-* The library profile received 4 reviews on Google Reviews - two 5-star and two 4-star ratings
-* profile views: Jan - 17,910; Feb - 24,093. Will keep tracking the profile views.
+* In March 2022, the library profile received 5 reviews on Google Reviews, all were 5-star ratings.
+* In Jan and Feb 2022, the library profile received 4 reviews on Google Reviews - two 5-star and two 4-star ratings
+* Profile views: Jan - 17,910; Feb - 24,093, Mar - 25,049. Will keep tracking the profile views.
+* Around 75% of the Google searches were preformed on desktop; while the rest 25% were on mobile. 
 
