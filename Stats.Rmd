@@ -12,6 +12,184 @@ output:
 # OA Stats
 This section is to track the OA status and citation counts of publications by the Tech authors with the publication dates from 2016 through 2020. 
 
+## May
+Scopus application is used to retrieve data on May 2nd, 2022. 
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(pivottabler)
+
+#---- Prepare data for analysis ----
+scopus_202203_1 <- read_csv("data/scopus_2016_20220301.csv")
+scopus_202203_2 <- read_csv("data/scopus_2017_20220301.csv")
+scopus_202203_3 <- read_csv("data/scopus_2018_20220301.csv")
+scopus_202203_4 <- read_csv("data/scopus_2019_20220301.csv")
+scopus_202203_5 <- read_csv("data/scopus_2020_20220301.csv")
+
+# combine all the 5 files into 1
+scopus_march <- rbind(scopus_202203_1, scopus_202203_2, scopus_202203_3, scopus_202203_4, scopus_202203_5)
+
+# select only columns relevant
+scopus_march <- scopus_march[c(1,3,4,5,12,13,15:17,19)]
+
+#rename columns
+names(scopus_march)[c(1:10)] <- c("author", "title", "year", "source_title", "citations_march", "DOI", "doc_type", "pub_stage", "oa_status_march", "EID")
+
+# Replace NAs in citations and OA status, remove rows with missing or duplicated DOIs
+scopus_march <- scopus_march %>% 
+  replace_na(list(oa_status_march = "Closed", citations_march = 0)) %>% 
+  filter(!is.na(DOI)) %>% 
+  filter(!DOI %in% DOI[duplicated(DOI)])
+
+# read April data
+scopus_april <- read_csv("data/scopus_20220419.csv")
+
+
+# select only columns relevant
+scopus_april <- scopus_april[c(1,3,4,5,12,13,15:17,19)]
+
+# rename columns
+names(scopus_april)[c(1:10)] <- c("author", "title", "year", "source_title", "citations_april", "DOI", "doc_type", "pub_stage", "oa_status_april", "EID")
+
+
+# Replace NAs in citations and OA status, remove rows with missing or duplicated DOIs
+scopus_april <- scopus_april %>% 
+  replace_na(list(oa_status_april = "Closed", citations_april = 0)) %>% 
+  filter(!is.na(DOI)) %>% 
+  filter(!DOI %in% DOI[duplicated(DOI)])
+
+# read May data
+scopus_may <- read_csv("data/scopus_20220502.csv")
+
+
+# select only columns relevant
+scopus_may <- scopus_may[c(1,3,4,5,12,13,15:17,19)]
+
+# rename columns
+names(scopus_may)[c(1:10)] <- c("author", "title", "year", "source_title", "citations_may", "DOI", "doc_type", "pub_stage", "oa_status_may", "EID")
+
+
+# Replace NAs in citations and OA status, remove rows with missing or duplicated DOIs
+scopus_may <- scopus_may %>% 
+  replace_na(list(oa_status_may = "Closed", citations_may = 0)) %>% 
+  filter(!is.na(DOI)) %>% 
+  filter(!DOI %in% DOI[duplicated(DOI)])
+
+# records removed from March
+removed <- anti_join(scopus_march, scopus_may, by = "DOI") 
+removed <- removed %>%
+  select(source_title, year, pub_stage, oa_status_march, DOI) %>% 
+  arrange(source_title)
+
+# new records in May
+added <- anti_join(scopus_may, scopus_march, by = "DOI") 
+
+added <- added %>% 
+  select(source_title, year, pub_stage, oa_status_may, DOI) %>% 
+  arrange(source_title)
+
+# shared items of April and May
+main <- inner_join(scopus_april, scopus_may, by = "DOI")
+main <- main[-c(11:14, 16, 17, 19)]
+
+names(main)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_april", "DOI", "doc_type", "pub_stage", "oa_status_april", "EID", "citations_may", "oa_status_may")
+```
+* Number of records (Comparing with March)
+  After removing records with missing DOIs or duplicated DOIs, 9,852 records were kept. 14 items were removed from the data set of March and 47 items were added. The total data change was around 0.6%.
+  
+* OA Status (Comparing with April)
+  * Comparing with April, 3 OA items turned to be closed; while 9 items became open access. 
+  * **14 items turned green where 5 of them were closed items in April**. 3 items lost their green status.
+
+```{r, echo=FALSE}
+#---- Findings - OA Status ----
+oa_status_change <- main %>% 
+  select(title, source_title, year, oa_status_april, oa_status_may, DOI) %>% 
+  filter(main$oa_status_april != main$oa_status_may) %>% 
+  arrange(source_title)
+
+open2close <- oa_status_change %>% 
+  filter(oa_status_may == "Closed")
+
+close2open <- oa_status_change %>% 
+  filter(oa_status_april == "Closed")
+
+close2green <- oa_status_change %>% 
+  filter(oa_status_april == "Closed" & oa_status_may == "All Open Access, Green")
+  
+green_added <- oa_status_change %>% 
+  filter(!str_detect(oa_status_april, "Green") & str_detect(oa_status_may, "Green"))
+
+green_removed <- oa_status_change %>% 
+  filter(str_detect(oa_status_april, "Green") & !str_detect(oa_status_may, "Green"))
+```
+
+Publications by Year & by OA Status (Data Retrieved on May 2)
+```{r, echo=FALSE}
+# OA status in May
+main %>% 
+  separate(oa_status_may, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year) %>% 
+  count(is_oa, oa_status) %>% 
+  mutate(percent = 100*n/sum(n)) %>% 
+  ungroup() %>% 
+  qhpvt(
+    c("is_oa","oa_status"), 
+    "year", 
+    c("Count" = "sum(n)", "%" = "sum(percent)"),
+    formats = list("%.0f", "%.2f"),
+    totals = list("is_oa" = "Total", "oa_status" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+```
+* Citations
+  * Comparing with April, 1,003 items obtained more citations.
+  * Citations per paper(CpP) for OA publications was almost 30 while for closed publications was a little bit over 10. 
+
+```{r, echo=FALSE}
+# Citations in May
+citations_change <- main %>% 
+  select(title, source_title, year, citations_april, citations_may) %>% 
+  filter(citations_may-citations_april != 0) %>% 
+  mutate(citations_diff = citations_may - citations_april, 
+         citations_percentage = ifelse(
+           citations_april != 0, (citations_may - citations_april)*100 / citations_april, ifelse(citations_april == 0, NA, 999))) %>% 
+  arrange(desc(citations_diff), desc(citations_percentage))
+
+citations_error <- citations_change %>% 
+  select(title, source_title, year, citations_april, citations_may, citations_diff) %>% 
+  filter(citations_diff < 0)
+
+citations_per_paper_05 <- main %>%
+  separate(oa_status_may, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(is_oa) %>% 
+  mutate(CpP_05 = sum(citations_may)/n()) %>% 
+  select(CpP_05)
+```
+Citations by Year & by OA Status (Data Retrieved on May 2)
+
+```{r, echo=FALSE}
+# Citations per Paper in May
+main %>% 
+  separate(oa_status_may, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year, oa_status) %>% 
+  mutate(citations_per_paper = round(sum(citations_may)/n())) %>%   # added a new column the citations per paper
+  select(year, is_oa, oa_status, citations_may, citations_per_paper) %>%  
+  ungroup() %>%  
+  qhpvt(
+    c("is_oa", "oa_status"), 
+    "year", 
+    c("Count" = "n()", "CpP" = "sum(citations_per_paper)/n()"),
+    formats = list("%.0f", "%.0f"),
+    totals = list("oa_status" = "Total", "Year" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+```
+
+
 ## April
 
 Both Scopus API and the application Scopus are used to retrieve the OA status and citation counts. The same data set as last month was used to acquire data through Scopus API. The application Scopus can find not only items moved out of Scopus but new items added to Scopus. The application Scopus will be used from May and the March data will be used as the benchmark for comparison. 
@@ -195,7 +373,7 @@ citations_per_paper_04 <- main %>%
   separate(oa_status_april, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
   replace_na(list(oa_status = "Closed")) %>% 
   group_by(is_oa) %>% 
-  mutate(CpP_04 = sum(citations_march)/n()) %>% 
+  mutate(CpP_04 = sum(citations_april)/n()) %>% 
   select(CpP_04)
 
 citations_per_paper_03 <- main %>%
