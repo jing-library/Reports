@@ -16,6 +16,48 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 Last compiled: `r Sys.Date()`
 
+# **April 2022**
+
+## Website
+* Continued working on the [tutorial video page](https://www.depts.ttu.edu/library/test/tutorials2.php) and 2 other versions
+* Updated pages - stacks, jobs, directory, and org charts
+* Together with Melissa, updated the Wi-Fi page to fit mobile devices better
+* Excluded docdel SAs from the GA stats
+* Changed the search box on the BCC library's page >> search only the BCC collections now
+* Worked on the KB article on creating a PRIMO search box
+* Retrieved and reviewed website usage stats
+* Updated lib hours, added new posts on Google Knowledge Panel, and responed reviews
+* Updated building services distribution list
+
+## Teaching
+* Preparing for the Excel workshop for the [College of Nursing, PVAMU](https://www.pvamu.edu/nursing/)
+
+## Workshops / Training
+* Watched training videos about Excel dashboard
+* Attended [Research Data Management Library Academy](https://rdmla.github.io/) Symposium
+
+
+## Research
+* Worked on and submitted proposal on pre- and post- pandemic library instructions for [IFLA WLIC](https://2022.ifla.org/) 
+* Submitted a proposal on Using OpenRefine to Retrieve data from APIs to the [Access Conference 2022](https://accessconference.ca/)
+
+
+## Service
+* CALA membership database maintenance
+* ERL search - Updated matrix and prepared phone interview questions
+* UX Team meeting
+
+
+## Others
+* IFLA registration, visa application, and other paper work
+* Prepared for the Carpentries Lesson Development Training
+* Explored Scopus API and retrieved OA data through both Scopus API and Scopus application
+* Prepared the exhibit of Herstory - meeting the speaker and set up the exhibit
+* Unit meeting
+* Co-chair meeting
+* triaged queries through website email
+
+
 # **March 2022**
 
 
