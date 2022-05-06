@@ -1,6 +1,5 @@
 ---
 title: "Stat-Related"
-author: "Jingjing Wu"
 date: "3/9/2022"
 output: html_document
 ---
