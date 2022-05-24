@@ -16,6 +16,7 @@ This section is to track the OA status and citation counts of publications by th
 Scopus application is used to retrieve data on May 2nd, 2022. 
 
 ```{r, echo=FALSE}
+#install.packages("pivottabler")
 library(tidyverse)
 library(pivottabler)
 
@@ -596,8 +597,13 @@ pt$renderPivot()
 
 ## Google Business Profile
 
+* In April 2022, the library profile received 2 reviews on Google Reviews, both were 5-star ratings.
 * In March 2022, the library profile received 5 reviews on Google Reviews, all were 5-star ratings.
 * In Jan and Feb 2022, the library profile received 4 reviews on Google Reviews - two 5-star and two 4-star ratings
-* Profile views: Jan - 17,910; Feb - 24,093, Mar - 25,049. Will keep tracking the profile views.
-* Around 75% of the Google searches were preformed on desktop; while the rest 25% were on mobile. 
+* Profile views: 
+  * Apr - 22,180
+  * Mar - 25,049 
+  * Feb - 24,093
+  * Jan - 17,910
+* Around 65% of the Google searches were preformed on desktop; while the rest 35% were on mobile. 
 
