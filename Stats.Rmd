@@ -15,7 +15,12 @@ This section is to track the OA status and citation counts of publications by th
 ## May
 Scopus application is used to retrieve data on May 2nd, 2022. 
 
-```{r, echo=FALSE}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+
+```{r, May-data-preparation}
 #install.packages("pivottabler")
 library(tidyverse)
 library(pivottabler)
@@ -102,7 +107,8 @@ names(main)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_
   * Comparing with April, 3 OA items turned to be closed; while 9 items became open access. 
   * **14 items turned green where 5 of them were closed items in April**. 3 items lost their green status.
 
-```{r, echo=FALSE}
+```{r, May-findings}
+
 #---- Findings - OA Status ----
 oa_status_change <- main %>% 
   select(title, source_title, year, oa_status_april, oa_status_may, DOI) %>% 
@@ -126,7 +132,8 @@ green_removed <- oa_status_change %>%
 ```
 
 Publications by Year & by OA Status (Data Retrieved on May 2)
-```{r, echo=FALSE}
+```{r, May-OA-status}
+
 # OA status in May
 main %>% 
   separate(oa_status_may, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
@@ -148,7 +155,9 @@ main %>%
   * Comparing with April, 1,003 items obtained more citations.
   * Citations per paper(CpP) for OA publications was almost 30 while for closed publications was a little bit over 10. 
 
-```{r, echo=FALSE}
+```{r, May-citations}
+
+
 # Citations in May
 citations_change <- main %>% 
   select(title, source_title, year, citations_april, citations_may) %>% 
@@ -171,7 +180,9 @@ citations_per_paper_05 <- main %>%
 ```
 Citations by Year & by OA Status (Data Retrieved on May 2)
 
-```{r, echo=FALSE}
+```{r, May-citations-per-paper}
+
+
 # Citations per Paper in May
 main %>% 
   separate(oa_status_may, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
@@ -195,7 +206,8 @@ main %>%
 
 Both Scopus API and the application Scopus are used to retrieve the OA status and citation counts. The same data set as last month was used to acquire data through Scopus API. The application Scopus can find not only items moved out of Scopus but new items added to Scopus. The application Scopus will be used from May and the March data will be used as the benchmark for comparison. 
 
-```{r, echo=FALSE}
+```{r, April-data-preparation}
+
 library(tidyverse)
 library(pivottabler)
 
@@ -261,7 +273,8 @@ scopus_april <- scopus_april %>%
     * The search of 03/01/2022 kept 9,819 records after removing those with duplicated  or missing DOIs.
     * The search of 04/19/2022 kept 9,854 records. Comparing with the data from last month, 11 records were moved out from the Scopus databases and 46 records were added. The total data change was around 0.6% this month. 
 
-```{r, echo=FALSE}
+```{r, April-findings}
+
 #---- Findings - Number of Items ----
 # records removed from March
 removed <- anti_join(scopus_march, scopus_april, by = "DOI") 
@@ -287,7 +300,8 @@ names(main)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_
     * In total, **35 items were added to repositories**, turned to be green, while **14 items lost their "green" status**. 
     * The following two tables show the number of publications by year and by OA status. Data of April came first, followed with data of March. All the data retrieved through Scopus application. 
 
-```{r, echo=FALSE}
+```{r, April-OA-status-1}
+
 #---- Findings - OA Status ----
 oa_status_change <- main %>% 
   select(title, source_title, year, oa_status_march, oa_status_april, DOI) %>% 
@@ -311,7 +325,8 @@ green_removed <- oa_status_change %>%
 ```
 OA Status Data Retrieved on April 19 (Scopus Application)
 
-```{r, echo=FALSE}
+```{r, April-OA-status-2}
+
 # OA status in April
 main %>% 
   separate(oa_status_april, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
@@ -331,7 +346,8 @@ main %>%
 ```
 OA Status Data Retrieved on March 1 (Scopus Application)
 
-```{r, echo=FALSE}
+```{r, March-OA-status}
+
 # OA status in March
 main %>% 
   separate(oa_status_march, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
@@ -356,7 +372,8 @@ main %>%
     * No big changes in Citations per Paper (CpP) from March to April. CpP for OA publication was around 28 while that for closed publication was almost 10. 
     * The following two tables show the Citations per Paper (CpP) by year and by OA status. Data of April came first, followed with data of March. All the data retrieved through Scopus application. 
 
-```{r, echo=FALSE}
+```{r, April-citations}
+
 #---- Findings - Citation Counts ----
 citations_change <- main %>% 
   select(title, source_title, year, citations_march, citations_april) %>% 
@@ -404,7 +421,8 @@ top_increase <- inner_join(top_400_diff, top_400_diff_percentage)
 ```
 
 Citations Data Retrieved on April 19 (Scopus Application)
-```{r, echo=FALSE}
+```{r, April-citations-per-paper}
+
 # Citations per Paper in April
 main %>% 
   separate(oa_status_april, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
@@ -424,7 +442,8 @@ main %>%
 ```
 Citations Data Retrieved on March 1 (Scopus Application)
 
-```{r, echo=FALSE}
+```{r, March-citations-per-paper}
+
 # Citations per Paper in March
 main %>% 
   separate(oa_status_march, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
@@ -462,7 +481,8 @@ Comparing the OA status information from Scopus and Unpaywall:
 
 The following table shows the count and percentage by OA status and year.
 
-```{r, echo=FALSE}
+```{r, March-OA-status-2}
+
 # install.packages("qwraps2") # not used
 # install.packages("gt") # not used
 # install.packages("pivottabler")
@@ -506,7 +526,8 @@ oa4pivot %>%
 
 ```
 The table below showed the citations per paper by OA status and year: 
-```{r echo=FALSE}
+```{r, March-OA-status-3}
+
 citations <- oa_stats_march
 citations$Cited_by[is.na(citations$Cited_by) == TRUE] <- 0
 citations$is_oa <- as.character(citations$is_oa)  #convert is_oa from logic to character
@@ -569,38 +590,41 @@ Comparing with the pandemic time, Jan through March of 2021(blue line), the webs
 * Channels: The percentage of sessions which came through organic searches increased from 43% to 60% in 2021 and 58% in 2022. Even before COVID-19, use of organic search was increasing. The pandemic accelerated this trend. 
 * Devices: Sessions using desktop have gradually moved to mobile during 2019 through 2021. But 2022 witnessed a jump from 9% to 13% in mobile and a drop from 90% to 84% in desktop. Will follow up to see if it is a new trend. 
 
-```{r echo=FALSE}
-
-pageviews <- read_csv("data/pageviews.csv")
-
-# pageviews %>% 
-#   qhpvt("Name", "Year", "sum(Pageviews)")
-
-
-pt <- PivotTable$new()
-pt$addData(pageviews)
-pt$addColumnDataGroups("Year")
-pt$addRowDataGroups("Name", 
-                    outlineTotal=list(groupStyleDeclarations=list(color="black")))
-pt$defineCalculation(calculationName = "TotalViews", summariseExpression = "sum(Pageviews)")
-pt$sortRowDataGroups(
-  levelNumber = 1,
-  orderBy = "calculation",
-  sortOrder = "desc",
-  calculationGroupName = "default"
-)
-#pt$asDataFrame()
-pt$renderPivot()
+```{r, Feb-GA}
+# # library(tidyverse)
+# # library(pivottabler)
+# 
+# pageviews <- read_csv("data/pageviews.csv")
+# 
+# ## pageviews %>% 
+# ##   qhpvt("Name", "Year", "sum(Pageviews)")
+# 
+# 
+# pt <- PivotTable$new()
+# pt$addData(pageviews)
+# pt$addColumnDataGroups("Year")
+# pt$addRowDataGroups("Name", 
+#                     outlineTotal=list(groupStyleDeclarations=list(color="black")))
+# pt$defineCalculation(calculationName = "TotalViews", summariseExpression = "sum(Pageviews)")
+# pt$sortRowDataGroups(
+#   levelNumber = 1,
+#   orderBy = "calculation",
+#   sortOrder = "desc",
+#   calculationGroupName = "default"
+# )
+# ## pt$asDataFrame()
+# pt$renderPivot()
 
 
 ```
 
 ## Google Business Profile
 
-* In April 2022, the library profile received 2 reviews on Google Reviews, both were 5-star ratings.
-* In March 2022, the library profile received 5 reviews on Google Reviews, all were 5-star ratings.
-* In Jan and Feb 2022, the library profile received 4 reviews on Google Reviews - two 5-star and two 4-star ratings
-* Profile views: 
+* Profile on Google Reviews
+  * Apr - 2 reviews received, both were 5-star ratings.
+  * Mar - 5 reviews received, all were 5-star ratings.
+  * Jan and Feb - 4 reviews received, two were 5-star and other two reviews were 4-star ratings
+* Profile views 
   * Apr - 22,180
   * Mar - 25,049 
   * Feb - 24,093
