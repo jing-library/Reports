@@ -16,6 +16,46 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 Last compiled: `r Sys.Date()`
 
+# **May 2022**
+
+## Website
+* Continued working on the [tutorial video page](https://www.depts.ttu.edu/library/test/tutorials2.php) & attended meetings
+* Update library hours on Google knowledge panel and responded to reviews
+* Updated pages - jobs, directory, org charts, and other pages
+* Supported the creation of audio library tours
+
+
+## Teaching
+* Met faculty from [College of Nursing, PVAMU](https://www.pvamu.edu/nursing/) and continued preparing for the Excel workshop 
+
+
+## Workshops / Training / Conferences
+* Watched training videos about Excel dashboard
+* AARC workshop: More Journal Articles and Fewer Books: Changing Publishing Practices in the Social Sciences
+* Read books on Using R for text mining and Using R for data analysis in Social Sciences
+
+## Research
+* Applied for the International Travel Fund for [IFLA WLIC](https://2022.ifla.org/) 
+* Started a grant idea for podcast
+
+
+## Service
+* CALA Election Committee - Prepare data for membership database maintenance
+* ERL search - Phone interviews, Reference Checks, and certified the search
+* IFLA monthly meeting and updated web pages for the SE site
+* UX Team meeting
+* Co-host workshop - HerStory: the legal history of Chinese American Women & edit transcript for the closed captioning
+* Volunteer - Fuel for finals
+* Review a proposal for the [Access Conference 2022](https://accessconference.ca/)
+
+
+## Others
+* Collected OA data for May and updated the OA data report
+* Unit meetings
+* Triaged and responded queries through website email
+
+
+
 # **April 2022**
 
 ## Website
@@ -26,7 +66,7 @@ Last compiled: `r Sys.Date()`
 * Changed the search box on the BCC library's page >> search only the BCC collections now
 * Worked on the KB article on creating a PRIMO search box
 * Retrieved and reviewed website usage stats
-* Updated lib hours, added new posts on Google Knowledge Panel, and responed reviews
+* Updated lib hours, added new posts on Google Knowledge Panel, and responded reviews
 * Updated building services distribution list
 
 ## Teaching

@@ -68,24 +68,12 @@ names(scopus_june)[c(1:10)] <- c("author", "title", "year", "source_title", "cit
 scopus_june <- scopus_june %>% 
   replace_na(list(oa_status_june = "Closed", citations_june = 0)) %>% 
   filter(!is.na(DOI)) %>% 
-  filter(!DOI %in% DOI[duplicated(DOI)])
+  filter(!DOI %in% DOI[duplicated(DOI)]) %>% 
+  write_csv("data_intermediate/scopus_june.csv")
 
 # read May data
-scopus_may <- read_csv("data/scopus_20220502.csv")
+scopus_may <- read_csv("data_intermediate/scopus_may.csv")
 
-
-# select only columns relevant
-scopus_may <- scopus_may[c(1,3,4,5,12,13,15:17,19)]
-
-# rename columns
-names(scopus_may)[c(1:10)] <- c("author", "title", "year", "source_title", "citations_may", "DOI", "doc_type", "pub_stage", "oa_status_may", "EID")
-
-
-# Replace NAs in citations and OA status, remove rows with missing or duplicated DOIs
-scopus_may <- scopus_may %>% 
-  replace_na(list(oa_status_may = "Closed", citations_may = 0)) %>% 
-  filter(!is.na(DOI)) %>% 
-  filter(!DOI %in% DOI[duplicated(DOI)])
 
 # records removed from March
 removed_06 <- anti_join(scopus_march, scopus_june, by = "DOI") 
@@ -120,7 +108,7 @@ names(main_06)[c(1:12)] <- c("author", "title", "year", "source_title", "citatio
 oa_status_change_06 <- main_06 %>% 
   select(title, source_title, year, oa_status_may, oa_status_june, DOI) %>% 
   filter(main_06$oa_status_may != main_06$oa_status_june) %>% 
-  arrange(source_title)
+  arrange(source_title) 
 
 open2close_06 <- oa_status_change_06 %>% 
   filter(oa_status_june == "Closed") %>% 
@@ -378,8 +366,6 @@ Both Scopus API and the application Scopus are used to retrieve the OA status an
 
 ```{r, April-data-preparation}
 
-library(tidyverse)
-library(pivottabler)
 
 #---- Prepare data for analysis ----
 scopus_202203_1 <- read_csv("data/scopus_2016_20220301.csv")
@@ -791,10 +777,12 @@ Comparing with the pandemic time, Jan through March of 2021(blue line), the webs
 ## Google Business Profile
 
 * Profile on Google Reviews
+  * May - No new reviews. 
   * Apr - 2 reviews received, both were 5-star ratings.
   * Mar - 5 reviews received, all were 5-star ratings.
   * Jan and Feb - 4 reviews received, two were 5-star and other two reviews were 4-star ratings
 * Profile views 
+  * May - 16,669
   * Apr - 22,180
   * Mar - 25,049 
   * Feb - 24,093
