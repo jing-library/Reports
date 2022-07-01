@@ -157,7 +157,6 @@ main_07 %>%
 * Citations
   * Comparing with June, **1,388 items** obtained more citations.
   * Citations per paper(CpP) for OA publications was **over 30.5** while for closed publications was **around 10.7**. 
-  * Citations per paper(CpP) of most OA categories have increased while those of closed publications kept unchanged.  
 
 ```{r, July-citations}
 
