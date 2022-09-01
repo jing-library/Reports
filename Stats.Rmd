@@ -47,6 +47,162 @@ scopus_march <- scopus_march %>%
 
 ```
 
+## September
+Scopus application is used to retrieve data on September 1st, 2022. 
+
+
+```{r, September-data-preparation}
+
+# read September data
+scopus_september <- read_csv("data/scopus_20220901.csv")
+
+
+# select only columns relevant
+scopus_september <- scopus_september[c(1,3,4,5,12,13,15:17,19)]
+
+# rename columns
+names(scopus_september)[c(1:10)] <- c("author", "title", "year", "source_title", "citations_september", "DOI", "doc_type", "pub_stage", "oa_status_september", "EID")
+
+
+# Replace NAs in citations and OA status, remove rows with missing or duplicated DOIs
+scopus_september <- scopus_september %>% 
+  replace_na(list(oa_status_september = "Closed", citations_september = 0)) %>% 
+  filter(!is.na(DOI)) %>% 
+  filter(!DOI %in% DOI[duplicated(DOI)]) %>% 
+  write_csv("data_intermediate/scopus_september.csv")
+
+# read August data
+scopus_august <- read_csv("data_intermediate/scopus_august.csv")
+
+
+# records removed from March
+removed_09 <- anti_join(scopus_march, scopus_september, by = "DOI") 
+removed_09 <- removed_09 %>%
+  select(source_title, year, pub_stage, oa_status_march, DOI) %>% 
+  arrange(source_title) %>% 
+  write_csv("data_intermediate/removed_09.csv")
+
+# new records in September
+added_09 <- anti_join(scopus_september, scopus_march, by = "DOI") 
+
+added_09 <- added_09 %>% 
+  select(source_title, year, pub_stage, oa_status_september, DOI) %>%
+  arrange(source_title)
+
+# shared items of August and September
+main_09 <- inner_join(scopus_august, scopus_september, by = "DOI")
+main_09 <- main_09[-c(11:14, 16, 17, 19)]
+
+names(main_09)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_august", "DOI", "doc_type", "pub_stage", "oa_status_august", "EID", "citations_september", "oa_status_september")
+```
+* Number of records (Comparing with March)
+  After removing records with missing DOIs or duplicated DOIs, **9,863 records** were kept. **41 items** were removed from the data set of March and **85 items** were added. The total data change was **around 1.3%**.
+  
+* OA Status (Comparing with August)
+  * Comparing with August, the OA status of **78 items** changed. 17 OA items turned to be closed; while 24 items became open access. 
+  * **15 items turned green where 6 of them were closed items in August**. 12 items lost their green status.
+
+```{r, September-findings}
+
+#---- Findings - OA Status ----
+oa_status_change_09 <- main_09 %>% 
+  select(title, source_title, year, oa_status_august, oa_status_september, DOI) %>% 
+  filter(main_09$oa_status_august != main_09$oa_status_september) %>% 
+  arrange(source_title) 
+
+open2close_09 <- oa_status_change_09 %>% 
+  filter(oa_status_september == "Closed") %>% 
+  write_csv("data_intermediate/open2close_09.csv")
+
+close2open_09 <- oa_status_change_09 %>% 
+  filter(oa_status_august == "Closed")
+
+# close2green_09 <- oa_status_change_09 %>% 
+#   filter(oa_status_august == "Closed" & oa_status_september == "All Open Access, Green") %>% 
+#   write_csv("data_intermediate/close2green_09.csv")
+
+
+close2green_09 <- oa_status_change_09 %>% 
+  filter(oa_status_august == "Closed" & str_detect(oa_status_september, "Green")) %>% 
+  write_csv("data_intermediate/close2green_09.csv")
+
+  
+green_added_09 <- oa_status_change_09 %>% 
+  filter(!str_detect(oa_status_august, "Green") & str_detect(oa_status_september, "Green"))
+
+green_removed_09 <- oa_status_change_09 %>% 
+  filter(str_detect(oa_status_august, "Green") & !str_detect(oa_status_september, "Green"))
+```
+
+Publications by Year & by OA Status (Data Retrieved on September 1)
+```{r, September-OA-status}
+
+# OA status in September
+main_09 %>% 
+  separate(oa_status_september, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year) %>% 
+  count(is_oa, oa_status) %>% 
+  mutate(percent = 100*n/sum(n)) %>% 
+  ungroup() %>% 
+  qhpvt(
+    c("is_oa","oa_status"), 
+    "year", 
+    c("Count" = "sum(n)", "%" = "sum(percent)"),
+    formats = list("%.0f", "%.2f"),
+    totals = list("is_oa" = "Total", "oa_status" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+```
+* Citations
+  * Comparing with August, **1,822 items** obtained more citations.
+  * Citations per paper(CpP) for OA publications was **32.26** while for closed publications was **around 11.36**. 
+
+```{r, September-citations}
+
+
+# Citations in September
+citations_change_09 <- main_09 %>% 
+  select(title, source_title, year, citations_august, citations_september) %>% 
+  filter(citations_september-citations_august != 0) %>% 
+  mutate(citations_diff = citations_september - citations_august, 
+         citations_percentage = ifelse(
+           citations_august != 0, (citations_september - citations_august)*100 / citations_august, ifelse(citations_august == 0, NA, 999))) %>% 
+  arrange(desc(citations_diff), desc(citations_percentage))
+
+citations_error_09 <- citations_change_09 %>% 
+  select(title, source_title, year, citations_august, citations_september, citations_diff) %>%
+  filter(citations_diff < 0)
+
+citations_per_paper_09 <- main_09 %>%
+  separate(oa_status_september, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(is_oa) %>% 
+  mutate(CpP_09 = sum(citations_september)/n())
+```
+Citations by Year & by OA Status (Data Retrieved on September 1)
+
+```{r, September-citations-per-paper}
+
+
+# Citations per Paper in September
+main_09 %>% 
+  separate(oa_status_september, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year, oa_status) %>% 
+  mutate(citations_per_paper = round(sum(citations_september)/n())) %>%   # added a new column the citations per paper
+  select(year, is_oa, oa_status, citations_september, citations_per_paper) %>%  
+  ungroup() %>%  
+  qhpvt(
+    c("is_oa", "oa_status"), 
+    "year", 
+    c("Count" = "n()", "CpP" = "sum(citations_per_paper)/n()"),
+    formats = list("%.0f", "%.0f"),
+    totals = list("oa_status" = "Total", "Year" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+```
+
 ## August
 Scopus application is used to retrieve data on August 1st, 2022. 
 
@@ -202,7 +358,6 @@ main_08 %>%
     totalStyle = list("font-weight"="bold")
     )
 ```
-
 
 ## July
 Scopus application is used to retrieve data on July 1st, 2022. 
