@@ -32,6 +32,7 @@ scopus_202203_5 <- read_csv("data/scopus_2020_20220301.csv")
 
 # combine all the 5 files into 1
 scopus_march <- rbind(scopus_202203_1, scopus_202203_2, scopus_202203_3, scopus_202203_4, scopus_202203_5)
+rm(scopus_202203_1, scopus_202203_2,scopus_202203_3,scopus_202203_4,scopus_202203_5)
 
 # select only columns relevant
 scopus_march <- scopus_march[c(1,3,4,5,12,13,15:17,19)]
@@ -45,6 +46,163 @@ scopus_march <- scopus_march %>%
   filter(!is.na(DOI)) %>% 
   filter(!DOI %in% DOI[duplicated(DOI)])
 
+```
+
+## October
+Scopus application is used to retrieve data on October 1st, 2022. 
+
+
+```{r, October-data-preparation}
+
+# read October data
+scopus_october <- read_csv("data/scopus_20221001.csv")
+
+
+# select only columns relevant
+scopus_october <- scopus_october[c(1,3,4,5,12,13,15:17,19)]
+
+# rename columns
+names(scopus_october)[c(1:10)] <- c("author", "title", "year", "source_title", "citations_october", "DOI", "doc_type", "pub_stage", "oa_status_october", "EID")
+
+
+# Replace NAs in citations and OA status, remove rows with missing or duplicated DOIs
+scopus_october <- scopus_october %>% 
+  replace_na(list(oa_status_october = "Closed", citations_october = 0)) %>% 
+  filter(!is.na(DOI)) %>% 
+  filter(!DOI %in% DOI[duplicated(DOI)]) %>% 
+  write_csv("data_intermediate/scopus_october.csv")
+
+# read September data
+scopus_september <- read_csv("data_intermediate/scopus_september.csv")
+
+
+# records removed from March
+removed_10 <- anti_join(scopus_march, scopus_october, by = "DOI") 
+removed_10 <- removed_10 %>%
+  select(source_title, year, pub_stage, oa_status_march, DOI) %>% 
+  arrange(source_title) %>% 
+  write_csv("data_intermediate/removed_10.csv")
+
+# new records in October
+added_10 <- anti_join(scopus_october, scopus_march, by = "DOI") 
+
+added_10 <- added_10 %>% 
+  select(source_title, year, pub_stage, oa_status_october, DOI) %>%
+  arrange(source_title)
+
+# shared items of September and October
+main_10 <- inner_join(scopus_september, scopus_october, by = "DOI")
+main_10 <- main_10[-c(11:14, 16, 17, 19)]
+
+names(main_10)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_september", "DOI", "doc_type", "pub_stage", "oa_status_september", "EID", "citations_october", "oa_status_october")
+```
+* Number of records (Comparing with March)
+  After removing records with missing DOIs or duplicated DOIs, **9,880 records** were kept. **47 items** were removed from the data set of March and **108 items** were added. The total data change was **around 1.6%**.
+  
+* OA Status (Comparing with September)
+  * Comparing with September, the OA status of **59 items** changed. 11 OA items turned to be closed; while 10 items became open access. 
+  * **17 items turned green where 4 of them were closed items in September**. 2 items lost their green status.
+
+```{r, October-findings}
+
+#---- Findings - OA Status ----
+
+oa_status_change_10 <- main_10 %>% 
+  select(title, source_title, year, oa_status_september, oa_status_october, DOI) %>%
+  filter(main_10$oa_status_september != main_10$oa_status_october) %>% 
+  arrange(source_title) 
+
+open2close_10 <- oa_status_change_10 %>% 
+  filter(oa_status_october == "Closed") %>% 
+  write_csv("data_intermediate/open2close_10.csv")
+
+close2open_10 <- oa_status_change_10 %>% 
+  filter(oa_status_september == "Closed")
+
+# close2green_10 <- oa_status_change_10 %>% 
+#   filter(oa_status_september == "Closed" & oa_status_october == "All Open Access, Green") %>% 
+#   write_csv("data_intermediate/close2green_10.csv")
+
+
+close2green_10 <- oa_status_change_10 %>% 
+  filter(oa_status_september == "Closed" & str_detect(oa_status_october, "Green")) %>% 
+  write_csv("data_intermediate/close2green_10.csv")
+
+  
+green_added_10 <- oa_status_change_10 %>% 
+  filter(!str_detect(oa_status_september, "Green") & str_detect(oa_status_october, "Green"))
+
+green_removed_10 <- oa_status_change_10 %>% 
+  filter(str_detect(oa_status_september, "Green") & !str_detect(oa_status_october, "Green"))
+```
+
+Publications by Year & by OA Status (Data Retrieved on October 1)
+```{r, October-OA-status}
+
+# OA status in October
+main_10 %>% 
+  separate(oa_status_october, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year) %>% 
+  count(is_oa, oa_status) %>% 
+  mutate(percent = 100*n/sum(n)) %>% 
+  ungroup() %>% 
+  qhpvt(
+    c("is_oa","oa_status"), 
+    "year", 
+    c("Count" = "sum(n)", "%" = "sum(percent)"),
+    formats = list("%.0f", "%.2f"),
+    totals = list("is_oa" = "Total", "oa_status" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+```
+* Citations
+  * Comparing with September, **2,404 items** obtained more citations.
+  * Citations per paper(CpP) for OA publications was **32.87** while for closed publications was **around 11.70**. 
+
+```{r, October-citations}
+
+
+# Citations in October
+citations_change_10 <- main_10 %>% 
+  select(title, source_title, year, citations_september, citations_october) %>% 
+  filter(citations_october-citations_september != 0) %>% 
+  mutate(citations_diff = citations_october - citations_september, 
+         citations_percentage = ifelse(
+           citations_september != 0, (citations_october - citations_september)*100 / citations_september, ifelse(citations_september == 0, NA, 999))) %>% 
+  arrange(desc(citations_diff), desc(citations_percentage))
+
+citations_error_10 <- citations_change_10 %>% 
+  select(title, source_title, year, citations_september, citations_october, citations_diff) %>%
+  filter(citations_diff < 0)
+
+citations_per_paper_10 <- main_10 %>%
+  separate(oa_status_october, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(is_oa) %>% 
+  mutate(CpP_10 = sum(citations_october)/n())
+```
+Citations by Year & by OA Status (Data Retrieved on October 1)
+
+```{r, October-citations-per-paper}
+
+
+# Citations per Paper in October
+main_10 %>% 
+  separate(oa_status_october, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year, oa_status) %>% 
+  mutate(citations_per_paper = round(sum(citations_october)/n())) %>%   # added a new column the citations per paper
+  select(year, is_oa, oa_status, citations_october, citations_per_paper) %>%  
+  ungroup() %>%  
+  qhpvt(
+    c("is_oa", "oa_status"), 
+    "year", 
+    c("Count" = "n()", "CpP" = "sum(citations_per_paper)/n()"),
+    formats = list("%.0f", "%.0f"),
+    totals = list("oa_status" = "Total", "Year" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
 ```
 
 ## September
