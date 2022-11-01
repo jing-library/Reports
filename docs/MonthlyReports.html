@@ -13,7 +13,7 @@
 
 <title>2022 Monthly Reports</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -144,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -350,10 +354,300 @@ div.tocify {
 </div>
 
 
-<p>Last compiled: 2022-06-17</p>
+<p>Last compiled: 2022-11-01</p>
+<div id="october-2022" class="section level1">
+<h1><strong>October 2022</strong></h1>
+<div id="website" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Updated personal librarians page</li>
+<li>minor update: fix broken links, Stacks change on S4 and S5.</li>
+<li>started to update the print version of library map (ground
+floor)</li>
+</ul>
+</div>
+<div id="teaching" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>Tableau workshop</li>
+<li>Consultancy on R</li>
+</ul>
+</div>
+<div id="workshops-training" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Tutorial video on Notion, a notetaking tool</li>
+<li>Webinar on Ex Libris Discovery</li>
+</ul>
+</div>
+<div id="research" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>Attended Access Conf - presented on using OpenRefine to extract
+information</li>
+<li>Attended SEDLS - presented in the poster session on data skills
+taught on campus</li>
+<li>prepare invited presentation for CALA webinar: If IFLA Right for
+You</li>
+</ul>
+</div>
+<div id="service" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>CALA Membership Committee: maintain membership database, summarize
+report on Dr. Lee’s scholarship</li>
+<li>UX/Website team meeting</li>
+<li>CALA PR &amp; Fundraising Committee: letter to potential sponsors,
+submit IRB request for the CALA president interviews,submitted
+invitation emails to CALA presidents</li>
+<li>IFLA SE: plan the questionnaire project</li>
+<li>TTU CFSA: meeting on upcoming event, started to prepare Chinese New
+Year event</li>
+<li>Assessment Team: read report</li>
+</ul>
+</div>
+<div id="others" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>OA data compile and report</li>
+<li>Triaged and responded queries through website email</li>
+<li>attended interview of Digital Curation Librarian</li>
+</ul>
+</div>
+</div>
+<div id="september-2022" class="section level1">
+<h1><strong>September 2022</strong></h1>
+<div id="website-1" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>homepage update</li>
+<li>Pull hours for library services from LibCal and displayed on the web
+pages</li>
+<li>minor updates on SWC test page</li>
+<li>Updated pages for Access dept.</li>
+<li>worked on video tutorials page</li>
+<li>page updates per request: OER, personal librarians, lean
+library</li>
+</ul>
+</div>
+<div id="teaching-1" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>R workshops (5 sessions)</li>
+<li>R consultancy</li>
+<li>work on simplify the R workshops</li>
+</ul>
+</div>
+<div id="workshops-training-meeting" class="section level2">
+<h2>Workshops / Training / Meeting</h2>
+<ul>
+<li>FRC coffee break on SR faculty report</li>
+<li>Meeting the provost</li>
+</ul>
+</div>
+<div id="research-1" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>finalized the application documents for sabbatical application</li>
+<li>Analyzed syllabus for the poster session of SEDLS</li>
+</ul>
+</div>
+<div id="service-1" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>IFLA SE section monthly meeting, website updates,</li>
+<li>Add TTU CFSA new members to website and distribution list</li>
+<li>CALA PR &amp; Fundraising committee: prepare documents for CALA
+president interivews, call for papers (special issue, IJoL), attended
+CALASYS training</li>
+<li>CALA Membership Committee: monthly meeting, maintain membership
+database</li>
+</ul>
+</div>
+<div id="others-1" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>OA data compile and report</li>
+<li>Triaged and responded queries through website email</li>
+</ul>
+</div>
+</div>
+<div id="august-2022" class="section level1">
+<h1><strong>August 2022</strong></h1>
+<div id="website-2" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Privacy policy update</li>
+<li>Minor updates on homepage - logo of ETD</li>
+<li>web page updates per request - HR pages, OA award pages and access
+updates, Evaluation page, basement map, Lean Library page</li>
+<li>worked on video tutorials page</li>
+<li>worked on the test page for SWC</li>
+<li>search box for the arch lib</li>
+<li>add new posts, responded to review, and add three Q&amp;A on the
+library knowledge panel on GMB</li>
+<li>Updated the search box background on the library homepage, arch
+library (test page), and BCC site (test page)</li>
+</ul>
+</div>
+<div id="teaching-2" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>updated the guides for the R workshops</li>
+<li>prepared R workshops</li>
+</ul>
+</div>
+<div id="workshops-training-meeting-1" class="section level2">
+<h2>Workshops / Training / Meeting</h2>
+<ul>
+<li>Excel workshops</li>
+<li>Faculty meeting</li>
+<li>Team chair meeting</li>
+</ul>
+</div>
+<div id="research-2" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>worked on the chapter for the Everyday Evidence Book</li>
+<li>prepared for Access Conference</li>
+<li>clean ref files on SWC website using OpenRefine</li>
+<li>Worked on grant for podcast</li>
+<li>read articles/report on website stats and faculty survey</li>
+</ul>
+</div>
+<div id="service-2" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>CALA Membership Committee: database maintenance, attended monthly
+meeting</li>
+<li>CALA PR &amp; Fundraising committee projects - proposal for the CALA
+collections grant</li>
+<li>IFLA SE section: wrote news report, attended monthly meeting, call
+for new members, preparation for the satellite conf with Utrecht
+University in 2023</li>
+</ul>
+</div>
+<div id="others-2" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>OA data compile and report</li>
+<li>Triaged and responded queries through website email</li>
+<li>reports on IFLA WLIC for grants</li>
+</ul>
+</div>
+</div>
+<div id="july-2022" class="section level1">
+<h1><strong>July 2022</strong></h1>
+<div id="website-3" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>troubleshot accordion page for access dept.</li>
+<li>Updated LibGuide profile</li>
+<li>Update pages per requests - jobs page, directory, org charts,</li>
+</ul>
+</div>
+<div id="teaching-3" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>submitted workshop proposals for the Fall</li>
+</ul>
+</div>
+<div id="workshops-training-1" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Workshops on Excel</li>
+<li>Workshop on build a good dataset</li>
+</ul>
+</div>
+<div id="research-3" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>read R for text mining</li>
+<li>worked on SEDLS proposal</li>
+<li>attended LiLI conference and presented</li>
+<li>worked on sabbatical proposal</li>
+<li>attended IFLA WLIC - poster sessions, SE section meeting, sessions,
+and other sessions</li>
+</ul>
+</div>
+<div id="service-3" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>CALA Membership database maintenance</li>
+<li>TTU CFSA farewell card</li>
+<li>CALA PR &amp; Fundraising Committee - projects to celebrate CALA’s
+50th anniversary</li>
+<li>ERL search - finalize documents</li>
+</ul>
+</div>
+<div id="others-3" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>OA data compile and report</li>
+<li>Triaged and responded queries through website email</li>
+</ul>
+</div>
+</div>
+<div id="june-2022" class="section level1">
+<h1><strong>June 2022</strong></h1>
+<div id="website-4" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Webpage updates - event page, icon for hours, fix broken links,
+event space, personal librarians, org chart, directory, access group,
+SWC pages, BCC homepage</li>
+<li>Updated Video Tutorials page</li>
+<li>Updated guides on LibGuides for accessibility</li>
+<li>worked on Google Analytics data</li>
+<li>Updated LibGuide CSS file</li>
+</ul>
+</div>
+<div id="teaching-4" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>Prepared and conducted workshop on Excel for Prairie View
+A&amp;M</li>
+</ul>
+</div>
+<div id="workshops-training-conferences" class="section level2">
+<h2>Workshops / Training / Conferences</h2>
+<ul>
+<li>4-half-day workshop by Carpentries</li>
+<li>Watched Digital Humanities workshop on YouTube</li>
+</ul>
+</div>
+<div id="research-4" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>prepared and conducted presentation on the LiLI Conference</li>
+<li>worked on grant for podcast</li>
+<li>Proposal to Southeast Data Librarian Symposium on <em>Data Skills
+Taught on Campus</em></li>
+<li>read R for text mining</li>
+<li>prepared poster for IFLA Congress</li>
+</ul>
+</div>
+<div id="service-4" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>ERL search</li>
+<li>CALA Membership maintenance</li>
+<li>IFLA SE section monthly meeting</li>
+<li>UX/Website Team meeting</li>
+<li>TTU CFSA - prepare e-card for a retiree</li>
+</ul>
+</div>
+<div id="others-4" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>OA data compile and report</li>
+<li>Triaged and responded queries through website email</li>
+</ul>
+</div>
+</div>
 <div id="may-2022" class="section level1">
 <h1><strong>May 2022</strong></h1>
-<div id="website" class="section level2">
+<div id="website-5" class="section level2">
 <h2>Website</h2>
 <ul>
 <li>Continued working on the <a
@@ -365,14 +659,14 @@ reviews</li>
 <li>Supported the creation of audio library tours</li>
 </ul>
 </div>
-<div id="teaching" class="section level2">
+<div id="teaching-5" class="section level2">
 <h2>Teaching</h2>
 <ul>
 <li>Met faculty from <a href="https://www.pvamu.edu/nursing/">College of
 Nursing, PVAMU</a> and continued preparing for the Excel workshop</li>
 </ul>
 </div>
-<div id="workshops-training-conferences" class="section level2">
+<div id="workshops-training-conferences-1" class="section level2">
 <h2>Workshops / Training / Conferences</h2>
 <ul>
 <li>Watched training videos about Excel dashboard</li>
@@ -382,7 +676,7 @@ Publishing Practices in the Social Sciences</li>
 in Social Sciences</li>
 </ul>
 </div>
-<div id="research" class="section level2">
+<div id="research-5" class="section level2">
 <h2>Research</h2>
 <ul>
 <li>Applied for the International Travel Fund for <a
@@ -390,7 +684,7 @@ href="https://2022.ifla.org/">IFLA WLIC</a></li>
 <li>Started a grant idea for podcast</li>
 </ul>
 </div>
-<div id="service" class="section level2">
+<div id="service-5" class="section level2">
 <h2>Service</h2>
 <ul>
 <li>CALA Election Committee - Prepare data for membership database
@@ -406,7 +700,7 @@ Women &amp; edit transcript for the closed captioning</li>
 href="https://accessconference.ca/">Access Conference 2022</a></li>
 </ul>
 </div>
-<div id="others" class="section level2">
+<div id="others-5" class="section level2">
 <h2>Others</h2>
 <ul>
 <li>Collected OA data for May and updated the OA data report</li>
@@ -417,7 +711,7 @@ href="https://accessconference.ca/">Access Conference 2022</a></li>
 </div>
 <div id="april-2022" class="section level1">
 <h1><strong>April 2022</strong></h1>
-<div id="website-1" class="section level2">
+<div id="website-6" class="section level2">
 <h2>Website</h2>
 <ul>
 <li>Continued working on the <a
@@ -436,14 +730,14 @@ responded reviews</li>
 <li>Updated building services distribution list</li>
 </ul>
 </div>
-<div id="teaching-1" class="section level2">
+<div id="teaching-6" class="section level2">
 <h2>Teaching</h2>
 <ul>
 <li>Preparing for the Excel workshop for the <a
 href="https://www.pvamu.edu/nursing/">College of Nursing, PVAMU</a></li>
 </ul>
 </div>
-<div id="workshops-training" class="section level2">
+<div id="workshops-training-2" class="section level2">
 <h2>Workshops / Training</h2>
 <ul>
 <li>Watched training videos about Excel dashboard</li>
@@ -451,7 +745,7 @@ href="https://www.pvamu.edu/nursing/">College of Nursing, PVAMU</a></li>
 Library Academy</a> Symposium</li>
 </ul>
 </div>
-<div id="research-1" class="section level2">
+<div id="research-6" class="section level2">
 <h2>Research</h2>
 <ul>
 <li>Worked on and submitted proposal on pre- and post- pandemic library
@@ -461,7 +755,7 @@ to the <a href="https://accessconference.ca/">Access Conference
 2022</a></li>
 </ul>
 </div>
-<div id="service-1" class="section level2">
+<div id="service-6" class="section level2">
 <h2>Service</h2>
 <ul>
 <li>CALA membership database maintenance</li>
@@ -470,7 +764,7 @@ questions</li>
 <li>UX Team meeting</li>
 </ul>
 </div>
-<div id="others-1" class="section level2">
+<div id="others-6" class="section level2">
 <h2>Others</h2>
 <ul>
 <li>IFLA registration, visa application, and other paper work</li>
@@ -487,7 +781,7 @@ the exhibit</li>
 </div>
 <div id="march-2022" class="section level1">
 <h1><strong>March 2022</strong></h1>
-<div id="website-2" class="section level2">
+<div id="website-7" class="section level2">
 <h2>Website</h2>
 <ul>
 <li>Updated jobs, directory, and org charts pages</li>
@@ -503,13 +797,13 @@ tutorial page</a>) and daily maintenance</li>
 <li>Updated donation page</li>
 </ul>
 </div>
-<div id="workshops-training-1" class="section level2">
+<div id="workshops-training-3" class="section level2">
 <h2>Workshops / Training</h2>
 <ul>
 <li>Watched training videos about Excel dashboard</li>
 </ul>
 </div>
-<div id="research-2" class="section level2">
+<div id="research-7" class="section level2">
 <h2>Research</h2>
 <ul>
 <li>Worked on and submitted poster proposal for <a
@@ -519,7 +813,7 @@ href="https://2022.ifla.org/">IFLA WLIC</a> (accepted)</li>
 href="https://lili.libguides.com/lili">LILi conference</a></li>
 </ul>
 </div>
-<div id="service-2" class="section level2">
+<div id="service-7" class="section level2">
 <h2>Service</h2>
 <ul>
 <li>IFLA Statistics &amp; Evaluation Section monthly meeting - website
@@ -533,7 +827,7 @@ Election</li>
 search</li>
 </ul>
 </div>
-<div id="others-2" class="section level2">
+<div id="others-7" class="section level2">
 <h2>Others</h2>
 <ul>
 <li>Monthly report (Feb, 2022) - took days to work on pivot table using
@@ -549,7 +843,7 @@ R.</li>
 </div>
 <div id="february-2022" class="section level1">
 <h1><strong>February 2022</strong></h1>
-<div id="website-3" class="section level2">
+<div id="website-8" class="section level2">
 <h2>Website</h2>
 <ul>
 <li>Worked on the draft version of the <a
@@ -587,7 +881,7 @@ evaluation/wrap-up.</li>
 UNC Libraries</li>
 </ul>
 </div>
-<div id="research-3" class="section level2">
+<div id="research-8" class="section level2">
 <h2>Research</h2>
 <ul>
 <li>Worked on the draft version of the book chapter for Data driven OA
@@ -597,7 +891,7 @@ Initiative</li>
 collection and analysis</li>
 </ul>
 </div>
-<div id="service-3" class="section level2">
+<div id="service-8" class="section level2">
 <h2>Service</h2>
 <ul>
 <li>CFSA Event (New Year Celebration) and meeting</li>
@@ -611,7 +905,7 @@ Book.</li>
 <li>IFLA SE Monthly Meeting: SE website, upcoming WLIC in July</li>
 </ul>
 </div>
-<div id="others-3" class="section level2">
+<div id="others-8" class="section level2">
 <h2>Others</h2>
 <ul>
 <li>R workshop preparation, rehearsal, and delivery</li>
@@ -624,7 +918,7 @@ as Jan)</li>
 </div>
 <div id="january-2022" class="section level1">
 <h1><strong>January 2022</strong></h1>
-<div id="website-4" class="section level2">
+<div id="website-9" class="section level2">
 <h2>Website</h2>
 <ul>
 <li><a href="https://www.depts.ttu.edu/library/bcclibrary/">Black
@@ -673,7 +967,7 @@ carpentry workshops</li>
 <li>Unit Meeting</li>
 </ul>
 </div>
-<div id="research-4" class="section level2">
+<div id="research-9" class="section level2">
 <h2>Research</h2>
 <ul>
 <li>Reviewed the data for the book chapter on OA publishing</li>
@@ -681,7 +975,7 @@ carpentry workshops</li>
 Altmetrics” per editor’s request</li>
 </ul>
 </div>
-<div id="service-4" class="section level2">
+<div id="service-9" class="section level2">
 <h2>Service</h2>
 <ul>
 <li>FSC regular meetings, reference check, and phone interviews</li>
@@ -695,7 +989,7 @@ website</a> updates and programs for the upcoming WLIC 2022</li>
 <li>CALA membership database maintenance</li>
 </ul>
 </div>
-<div id="others-4" class="section level2">
+<div id="others-9" class="section level2">
 <h2>Others</h2>
 <ul>
 <li>R workshops preparation, rehearsals, and deliveries (updated <a

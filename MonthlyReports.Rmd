@@ -16,6 +16,177 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 Last compiled: `r Sys.Date()`
 
+# **October 2022**
+## Website
+* Updated personal librarians page
+* minor update: fix broken links, Stacks change on S4 and S5.
+* started to update the print version of library map (ground floor)
+
+## Teaching
+* Tableau workshop
+* Consultancy on R
+
+## Workshops / Training 
+* Tutorial video on Notion, a notetaking tool
+* Webinar on Ex Libris Discovery
+
+## Research
+* Attended Access Conf - presented on using OpenRefine to extract information
+* Attended SEDLS - presented in the poster session on data skills taught on campus
+* prepare invited presentation for CALA webinar: If IFLA Right for You
+
+## Service
+* CALA Membership Committee: maintain membership database, summarize report on Dr. Lee's scholarship
+* UX/Website team meeting
+* CALA PR & Fundraising Committee: letter to potential sponsors, submit IRB request for the CALA president interviews,submitted invitation emails to CALA presidents 
+* IFLA SE: plan the questionnaire project
+* TTU CFSA: meeting on upcoming event, started to prepare Chinese New Year event
+* Assessment Team: read report
+
+
+## Others
+* OA data compile and report
+* Triaged and responded queries through website email
+* attended interview of Digital Curation Librarian
+
+
+
+# **September 2022**
+## Website
+* homepage update
+* Pull hours for library services from LibCal and displayed on the web pages
+* minor updates on SWC test page
+* Updated pages for Access dept. 
+* worked on video tutorials page
+* page updates per request: OER, personal librarians, lean library
+
+## Teaching
+* R workshops (5 sessions)
+* R consultancy
+* work on simplify the R workshops
+
+## Workshops / Training / Meeting
+* FRC coffee break on SR faculty report
+* Meeting the provost
+
+## Research
+* finalized the application documents for sabbatical application
+* Analyzed syllabus for the poster session of SEDLS
+
+## Service
+* IFLA SE section monthly meeting, website updates, 
+* Add TTU CFSA new members to website and distribution list
+* CALA PR & Fundraising committee: prepare documents for CALA president interivews, call for papers (special issue, IJoL), attended CALASYS training
+* CALA Membership Committee: monthly meeting, maintain membership database
+
+## Others
+* OA data compile and report
+* Triaged and responded queries through website email
+
+
+# **August 2022**
+## Website
+* Privacy policy update
+* Minor updates on homepage - logo of ETD
+* web page updates per request - HR pages, OA award pages and access updates, Evaluation page, basement map, Lean Library page
+* worked on video tutorials page
+* worked on the test page for SWC
+* search box for the arch lib
+* add new posts, responded to review, and add three Q&A on the library knowledge panel on GMB
+* Updated the search box background on the library homepage, arch library (test page), and BCC site (test page)
+
+
+## Teaching
+* updated the guides for the R workshops
+* prepared R workshops
+
+## Workshops / Training / Meeting
+* Excel workshops
+* Faculty meeting
+* Team chair meeting
+
+## Research
+* worked on the chapter for the Everyday Evidence Book
+* prepared for Access Conference
+* clean ref files on SWC website using OpenRefine
+* Worked on grant for podcast
+* read articles/report on website stats and faculty survey
+
+## Service
+* CALA Membership Committee: database maintenance, attended monthly meeting
+* CALA PR & Fundraising committee projects - proposal for the CALA collections grant
+* IFLA SE section: wrote news report, attended monthly meeting, call for new members, preparation for the satellite conf with Utrecht University in 2023
+
+
+## Others
+* OA data compile and report
+* Triaged and responded queries through website email
+* reports on IFLA WLIC for grants
+
+# **July 2022**
+## Website
+* troubleshot accordion page for access dept. 
+* Updated LibGuide profile
+* Update pages per requests - jobs page, directory, org charts, 
+
+## Teaching
+* submitted workshop proposals for the Fall
+
+## Workshops / Training
+* Workshops on Excel
+* Workshop on build a good dataset
+
+## Research
+* read R for text mining
+* worked on SEDLS proposal
+* attended LiLI conference and presented
+* worked on sabbatical proposal
+* attended IFLA WLIC - poster sessions, SE section meeting, sessions, and other sessions
+
+## Service
+* CALA Membership database maintenance
+* TTU CFSA farewell card
+* CALA PR & Fundraising Committee - projects to celebrate CALA's 50th anniversary
+* ERL search - finalize documents
+
+## Others
+* OA data compile and report
+* Triaged and responded queries through website email
+
+# **June 2022**
+## Website
+* Webpage updates - event page, icon for hours, fix broken links, event space, personal librarians, org chart, directory, access group, SWC pages, BCC homepage
+* Updated Video Tutorials page
+* Updated guides on LibGuides for accessibility
+* worked on Google Analytics data
+* Updated LibGuide CSS file
+
+## Teaching
+* Prepared and conducted workshop on Excel for Prairie View A&M
+
+## Workshops / Training / Conferences
+* 4-half-day workshop by Carpentries
+* Watched Digital Humanities workshop on YouTube
+
+## Research
+* prepared and conducted presentation on the LiLI Conference
+* worked on grant for podcast
+* Proposal to Southeast Data Librarian Symposium on *Data Skills Taught on Campus*
+* read R for text mining
+* prepared poster for IFLA Congress
+
+## Service
+* ERL search
+* CALA Membership maintenance
+* IFLA SE section monthly meeting
+* UX/Website Team meeting
+* TTU CFSA - prepare e-card for a retiree
+
+## Others
+* OA data compile and report
+* Triaged and responded queries through website email
+
+
 # **May 2022**
 
 ## Website
