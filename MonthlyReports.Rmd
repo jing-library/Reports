@@ -16,6 +16,46 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 Last compiled: `r Sys.Date()`
 
+# **November 2022**
+## Website
+* Continue updating personal librarians page
+* Updated the print version of library map (ground floor)
+* Add slideshow and event pages for bcc library homepage
+* Remove Friends of Libraries
+* Updated donation page, event space pages, Privacy policy, 
+* Write instruction for HR on how to manage the staff directory
+
+## Teaching
+* Prepare for R workshop
+* Consultancy on R
+* Prepare for workshop - using R for text mining
+
+## Workshops / Training 
+* Webinar on e-resources
+* AI4LAM - opening session
+
+## Research
+* Prepare for the podcast - look for possible host and platform
+* Proposed to ARL Book chapter - Data Culture in Academic Libraries
+* Started to work on paper about data literacy courses in MLIS
+
+
+## Service
+* CALA Membership Committee: maintain membership database, monthly meeting, process application for Dr. Li's scholarship, prepare member lists for CALA treasurer & Newsletter Committee
+* UX/Website team meeting, SharePoint site migration
+* CALA PR & Fundraising Committee: prepare CALA president interview; interview 2 former CALA presidents and transcribe the talks; work on 2023 calendar for donation purposes; serve as guest editor for the special issue of IJoL
+* IFLA SE: monthly meeting, update project page
+* TTU CFSA: Update website and distribution list
+* Assessment Team: weekly meeting; website data for the Reach project; prepare and analyze LibGuide usage data (on Google Analysis)
+
+
+## Others
+* OA data compile and report
+* Triaged and responded queries through website email
+* attended interview of Digital Curation Librarian
+* download recital videos from Bilibili
+
+
 # **October 2022**
 ## Website
 * Updated personal librarians page
