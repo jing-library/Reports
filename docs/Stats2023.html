@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Stats 2023</title>
+
+<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+
+<script src="site_libs/pivottabler-binding-1.5.3/pivottabler.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Reports</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="MonthlyReports.html">2022 Monthly Reports</a>
+</li>
+<li>
+  <a href="Stats.html">2022 Stats</a>
+</li>
+<li>
+  <a href="Stats2023.html">2023 Stats</a>
+</li>
+<li>
+  <a href="StatsRelated.html">Stats Related</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Stats 2023</h1>
+
+</div>
+
+
+<div id="oa-stats" class="section level1">
+<h1>OA Stats</h1>
+<p>This section is to track the OA status and citation counts of
+publications by the Tech authors with the publication dates from 2016
+through 2020.</p>
+<div id="january" class="section level2">
+<h2>2023 January</h2>
+<p>Data was retrieved from Scopus on January 2nd, 2023.</p>
+<ul>
+<li><p>Number of records (Comparing with 2022 March) After removing
+records with missing DOIs or duplicated DOIs, <strong>9,888
+records</strong> were kept. <strong>60 items</strong> were removed from
+the data set of March and <strong>129 items</strong> were added. The
+total data change was <strong>around 1.9%</strong>.</p></li>
+<li><p>OA Status (Comparing with 2022 December)</p>
+<ul>
+<li>Comparing with 2022 December, the OA status of <strong>92
+items</strong> changed. 26 OA items turned to be closed; while 18 items
+became open access.</li>
+<li><strong>11 items turned green where 9 of them were closed items in
+November</strong>. 9 items lost their green status.</li>
+</ul></li>
+</ul>
+<p>Publications by Year &amp; by OA Status (Data Retrieved on January
+2nd, 2023)</p>
+<div id="htmlwidget-d8b5f9ce02ffdf29b000" style="width:auto;height:auto;" class="pivottabler html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d8b5f9ce02ffdf29b000">{"x":{"tableCss":".Table {display: table; border-collapse: collapse; }\r\n.ColumnHeader {font-family: Arial; font-size: 0.75em; border: 1px solid lightgray; vertical-align: middle; font-weight: bold; background-color: #F2F2F2; padding: 2px; text-align: center; }\r\n.RowHeader {font-family: Arial; font-size: 0.75em; border: 1px solid lightgray; vertical-align: middle; font-weight: bold; background-color: #F2F2F2; padding: 2px 8px 2px 2px; text-align: left; }\r\n.Cell {font-family: Arial; font-size: 0.75em; padding: 2px 2px 2px 8px; border: 1px solid lightgray; vertical-align: middle; text-align: right; }\r\n.OutlineColumnHeader {font-family: Arial; font-size: 0.75em; border: 1px solid lightgray; vertical-align: middle; font-weight: bold; background-color: #F2F2F2; padding: 2px; text-align: center; }\r\n.OutlineRowHeader {font-family: Arial; font-size: 0.75em; border: 1px solid lightgray; vertical-align: middle; font-weight: bold; background-color: #F2F2F2; padding: 2px 8px 2px 2px; text-align: left; }\r\n.OutlineCell {font-family: Arial; font-size: 0.75em; padding: 2px 2px 2px 8px; border: 1px solid lightgray; vertical-align: middle; text-align: right; background-color: #F8F8F8; font-weight: bold; }\r\n.Total {font-family: Arial; font-size: 0.75em; padding: 2px 2px 2px 8px; border: 1px solid lightgray; vertical-align: middle; text-align: right; font-weight: bold; }\r\n","tableHtml":"<table class=\"Table\">\n  <tr>\n    <th class=\"RowHeader\" rowspan=\"2\" colspan=\"2\">&nbsp;<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2016<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2017<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2018<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2019<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2020<\/th>\n  <\/tr>\n  <tr>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">%<\/th>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">%<\/th>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">%<\/th>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">%<\/th>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">%<\/th>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\" rowspan=\"5\">All Open Access<\/th>\n    <th class=\"RowHeader\">Bronze<\/th>\n    <td class=\"Cell\">188<\/td>\n    <td class=\"Cell\">10.88<\/td>\n    <td class=\"Cell\">162<\/td>\n    <td class=\"Cell\">8.66<\/td>\n    <td class=\"Cell\">161<\/td>\n    <td class=\"Cell\">8.12<\/td>\n    <td class=\"Cell\">171<\/td>\n    <td class=\"Cell\">8.19<\/td>\n    <td class=\"Cell\">230<\/td>\n    <td class=\"Cell\">10.40<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Gold<\/th>\n    <td class=\"Cell\">214<\/td>\n    <td class=\"Cell\">12.38<\/td>\n    <td class=\"Cell\">254<\/td>\n    <td class=\"Cell\">13.58<\/td>\n    <td class=\"Cell\">314<\/td>\n    <td class=\"Cell\">15.84<\/td>\n    <td class=\"Cell\">361<\/td>\n    <td class=\"Cell\">17.29<\/td>\n    <td class=\"Cell\">455<\/td>\n    <td class=\"Cell\">20.58<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Green<\/th>\n    <td class=\"Cell\">200<\/td>\n    <td class=\"Cell\">11.57<\/td>\n    <td class=\"Cell\">225<\/td>\n    <td class=\"Cell\">12.03<\/td>\n    <td class=\"Cell\">203<\/td>\n    <td class=\"Cell\">10.24<\/td>\n    <td class=\"Cell\">226<\/td>\n    <td class=\"Cell\">10.82<\/td>\n    <td class=\"Cell\">193<\/td>\n    <td class=\"Cell\">8.73<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Hybrid Gold<\/th>\n    <td class=\"Cell\">66<\/td>\n    <td class=\"Cell\">3.82<\/td>\n    <td class=\"Cell\">95<\/td>\n    <td class=\"Cell\">5.08<\/td>\n    <td class=\"Cell\">85<\/td>\n    <td class=\"Cell\">4.29<\/td>\n    <td class=\"Cell\">86<\/td>\n    <td class=\"Cell\">4.12<\/td>\n    <td class=\"Cell\">120<\/td>\n    <td class=\"Cell\">5.43<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Total<\/th>\n    <td class=\"Total\">668<\/td>\n    <td class=\"Total\">38.66<\/td>\n    <td class=\"Total\">736<\/td>\n    <td class=\"Total\">39.34<\/td>\n    <td class=\"Total\">763<\/td>\n    <td class=\"Total\">38.50<\/td>\n    <td class=\"Total\">844<\/td>\n    <td class=\"Total\">40.42<\/td>\n    <td class=\"Total\">998<\/td>\n    <td class=\"Total\">45.14<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\" rowspan=\"2\">Closed<\/th>\n    <th class=\"RowHeader\">Closed<\/th>\n    <td class=\"Cell\">1060<\/td>\n    <td class=\"Cell\">61.34<\/td>\n    <td class=\"Cell\">1135<\/td>\n    <td class=\"Cell\">60.66<\/td>\n    <td class=\"Cell\">1219<\/td>\n    <td class=\"Cell\">61.50<\/td>\n    <td class=\"Cell\">1244<\/td>\n    <td class=\"Cell\">59.58<\/td>\n    <td class=\"Cell\">1213<\/td>\n    <td class=\"Cell\">54.86<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Total<\/th>\n    <td class=\"Total\">1060<\/td>\n    <td class=\"Total\">61.34<\/td>\n    <td class=\"Total\">1135<\/td>\n    <td class=\"Total\">60.66<\/td>\n    <td class=\"Total\">1219<\/td>\n    <td class=\"Total\">61.50<\/td>\n    <td class=\"Total\">1244<\/td>\n    <td class=\"Total\">59.58<\/td>\n    <td class=\"Total\">1213<\/td>\n    <td class=\"Total\">54.86<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Total<\/th>\n    <th class=\"RowHeader\">&nbsp;<\/th>\n    <td class=\"Total\">1728<\/td>\n    <td class=\"Total\">100.00<\/td>\n    <td class=\"Total\">1871<\/td>\n    <td class=\"Total\">100.00<\/td>\n    <td class=\"Total\">1982<\/td>\n    <td class=\"Total\">100.00<\/td>\n    <td class=\"Total\">2088<\/td>\n    <td class=\"Total\">100.00<\/td>\n    <td class=\"Total\">2211<\/td>\n    <td class=\"Total\">100.00<\/td>\n  <\/tr>\n<\/table>","settings":[]},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li>Citations
+<ul>
+<li>Comparing with 2022 December, <strong>2,110 items</strong> obtained
+more citations.</li>
+<li>Citations per paper(CpP) for OA publications was
+<strong>34.81</strong> while for closed publications was <strong>around
+12.56</strong>.</li>
+</ul></li>
+</ul>
+<p>Citations by Year &amp; by OA Status (Data Retrieved on January 2nd,
+2023)</p>
+<div id="htmlwidget-51daea61935753c9f882" style="width:auto;height:auto;" class="pivottabler html-widget"></div>
+<script type="application/json" data-for="htmlwidget-51daea61935753c9f882">{"x":{"tableCss":".Table {display: table; border-collapse: collapse; }\r\n.ColumnHeader {font-family: Arial; font-size: 0.75em; border: 1px solid lightgray; vertical-align: middle; font-weight: bold; background-color: #F2F2F2; padding: 2px; text-align: center; }\r\n.RowHeader {font-family: Arial; font-size: 0.75em; border: 1px solid lightgray; vertical-align: middle; font-weight: bold; background-color: #F2F2F2; padding: 2px 8px 2px 2px; text-align: left; }\r\n.Cell {font-family: Arial; font-size: 0.75em; padding: 2px 2px 2px 8px; border: 1px solid lightgray; vertical-align: middle; text-align: right; }\r\n.OutlineColumnHeader {font-family: Arial; font-size: 0.75em; border: 1px solid lightgray; vertical-align: middle; font-weight: bold; background-color: #F2F2F2; padding: 2px; text-align: center; }\r\n.OutlineRowHeader {font-family: Arial; font-size: 0.75em; border: 1px solid lightgray; vertical-align: middle; font-weight: bold; background-color: #F2F2F2; padding: 2px 8px 2px 2px; text-align: left; }\r\n.OutlineCell {font-family: Arial; font-size: 0.75em; padding: 2px 2px 2px 8px; border: 1px solid lightgray; vertical-align: middle; text-align: right; background-color: #F8F8F8; font-weight: bold; }\r\n.Total {font-family: Arial; font-size: 0.75em; padding: 2px 2px 2px 8px; border: 1px solid lightgray; vertical-align: middle; text-align: right; font-weight: bold; }\r\n","tableHtml":"<table class=\"Table\">\n  <tr>\n    <th class=\"RowHeader\" rowspan=\"2\" colspan=\"2\">&nbsp;<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2016<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2017<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2018<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2019<\/th>\n    <th class=\"ColumnHeader\" colspan=\"2\">2020<\/th>\n  <\/tr>\n  <tr>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">CpP<\/th>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">CpP<\/th>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">CpP<\/th>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">CpP<\/th>\n    <th class=\"ColumnHeader\">Count<\/th>\n    <th class=\"ColumnHeader\">CpP<\/th>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\" rowspan=\"5\">All Open Access<\/th>\n    <th class=\"RowHeader\">Bronze<\/th>\n    <td class=\"Cell\">188<\/td>\n    <td class=\"Cell\">42<\/td>\n    <td class=\"Cell\">162<\/td>\n    <td class=\"Cell\">28<\/td>\n    <td class=\"Cell\">161<\/td>\n    <td class=\"Cell\">27<\/td>\n    <td class=\"Cell\">171<\/td>\n    <td class=\"Cell\">16<\/td>\n    <td class=\"Cell\">230<\/td>\n    <td class=\"Cell\">14<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Gold<\/th>\n    <td class=\"Cell\">214<\/td>\n    <td class=\"Cell\">37<\/td>\n    <td class=\"Cell\">254<\/td>\n    <td class=\"Cell\">28<\/td>\n    <td class=\"Cell\">314<\/td>\n    <td class=\"Cell\">28<\/td>\n    <td class=\"Cell\">361<\/td>\n    <td class=\"Cell\">24<\/td>\n    <td class=\"Cell\">455<\/td>\n    <td class=\"Cell\">12<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Green<\/th>\n    <td class=\"Cell\">200<\/td>\n    <td class=\"Cell\">32<\/td>\n    <td class=\"Cell\">225<\/td>\n    <td class=\"Cell\">35<\/td>\n    <td class=\"Cell\">203<\/td>\n    <td class=\"Cell\">23<\/td>\n    <td class=\"Cell\">226<\/td>\n    <td class=\"Cell\">16<\/td>\n    <td class=\"Cell\">193<\/td>\n    <td class=\"Cell\">11<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Hybrid Gold<\/th>\n    <td class=\"Cell\">66<\/td>\n    <td class=\"Cell\">238<\/td>\n    <td class=\"Cell\">95<\/td>\n    <td class=\"Cell\">198<\/td>\n    <td class=\"Cell\">85<\/td>\n    <td class=\"Cell\">142<\/td>\n    <td class=\"Cell\">86<\/td>\n    <td class=\"Cell\">32<\/td>\n    <td class=\"Cell\">120<\/td>\n    <td class=\"Cell\">40<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Total<\/th>\n    <td class=\"Total\">668<\/td>\n    <td class=\"Total\">57<\/td>\n    <td class=\"Total\">736<\/td>\n    <td class=\"Total\">52<\/td>\n    <td class=\"Total\">763<\/td>\n    <td class=\"Total\">39<\/td>\n    <td class=\"Total\">844<\/td>\n    <td class=\"Total\">21<\/td>\n    <td class=\"Total\">998<\/td>\n    <td class=\"Total\">16<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\" rowspan=\"2\">Closed<\/th>\n    <th class=\"RowHeader\">Closed<\/th>\n    <td class=\"Cell\">1060<\/td>\n    <td class=\"Cell\">17<\/td>\n    <td class=\"Cell\">1135<\/td>\n    <td class=\"Cell\">15<\/td>\n    <td class=\"Cell\">1219<\/td>\n    <td class=\"Cell\">13<\/td>\n    <td class=\"Cell\">1244<\/td>\n    <td class=\"Cell\">11<\/td>\n    <td class=\"Cell\">1213<\/td>\n    <td class=\"Cell\">8<\/td>\n  <\/tr>\n  <tr>\n    <th class=\"RowHeader\">Total<\/th>\n    <td class=\"Total\">1060<\/td>\n    <td class=\"Total\">17<\/td>\n    <td class=\"Total\">1135<\/td>\n    <td class=\"Total\">15<\/td>\n    <td class=\"Total\">1219<\/td>\n    <td class=\"Total\">13<\/td>\n    <td class=\"Total\">1244<\/td>\n    <td class=\"Total\">11<\/td>\n    <td class=\"Total\">1213<\/td>\n    <td class=\"Total\">8<\/td>\n  <\/tr>\n<\/table>","settings":[]},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="web-stats" class="section level1">
+<h1>Web Stats</h1>
+<p>Comparing Jan and Feb of the four years from 2019 to 2022</p>
+<div id="google-analytics" class="section level2">
+<h2>Google Analytics</h2>
+<div id="march" class="section level3">
+<h3>March</h3>
+<div id="overview" class="section level4">
+<h4>Overview</h4>
+<p>The page views of the <strong>study spaces page</strong> have
+<strong>tripled to nearly 10,000 since 2019</strong>. The mobile visits
+increased from 1,000 to about 5,000 now. <strong>The mobile usage takes
+almost half of the page views of this page</strong>.</p>
+<p>Comparing with the pandemic time, Jan through March of 2021(blue
+line), the website visits <strong>increased around 20% in 2022</strong>.
+The current page views are still <strong>20-30% lower than those before
+the COVID-19</strong>.</p>
+<p><br> <img src="images/pageview_jan-mar_2019-2022.png" /></p>
+<p><em>Note</em></p>
+<ul>
+<li>The page views of library website fluctuate on a weekly basis. The
+x-axis uses the date of the year 2022. The page views of other year are
+switched to match the fluctuation and demo the differences by year.</li>
+<li>The second half week of 02/05 in 2022 and the week of 02/19 in 2021,
+the city was hit by winter storms and the campus was closed.</li>
+<li>The week of 03/12 in 2019 and the week of 03/19 in 2020 &amp; 2022
+were spring breaks.</li>
+</ul>
+</div>
+<div id="organic-search-vs-direct-visit" class="section level4">
+<h4>Organic search vs Direct visit</h4>
+<ul>
+<li>For the most visited pages like study space, ETD, books, personal
+librarians, doc del, and accounts, over 65% of visits came from organic
+searches.</li>
+</ul>
+</div>
+<div id="desktop-vs-mobile" class="section level4">
+<h4>Desktop vs Mobile</h4>
+<ul>
+<li>Most pages are still viewed on desktops.</li>
+<li>Certain pages have obtained more mobile users. The mobile views of
+the parking and Wi-Fi pages have increased from around 65% to 77% since
+2019.</li>
+<li>The use of tablets seems declining.</li>
+</ul>
+</div>
+</div>
+<div id="feb" class="section level3">
+<h3>Feb</h3>
+<p><strong>The overall usage of website increases comparing with the
+same time period of 2021, but has not come back to the level of 2019 and
+2020 (pre-pandemic). </strong></p>
+<p><strong>Home page clicks - The label [object
+HTMLDivElement]tab_overlay[object Object] takes over 7% of the clicks
+but I could not identify the element. Probably this label is for some
+spots on the search boxes. If true, the search box area got over 60% of
+the clicks. Need to follow up with this label. </strong></p>
+<ul>
+<li>Browsers: 65-70% sessions used Chrome; usage of Safari was slightly
+increased</li>
+<li>Channels: The percentage of sessions which came through organic
+searches increased from 43% to 60% in 2021 and 58% in 2022. Even before
+COVID-19, use of organic search was increasing. The pandemic accelerated
+this trend.</li>
+<li>Devices: Sessions using desktop have gradually moved to mobile
+during 2019 through 2021. But 2022 witnessed a jump from 9% to 13% in
+mobile and a drop from 90% to 84% in desktop. Will follow up to see if
+it is a new trend.</li>
+</ul>
+</div>
+</div>
+<div id="google-business-profile" class="section level2">
+<h2>Google Business Profile</h2>
+<ul>
+<li>Profile on Google Reviews
+<ul>
+<li>Oct - 3 reviews received, all were rated 5 stars.</li>
+<li>Sep - 3 reviews received, two were 5-star and one was 4-star. The
+user pointed out that if you don’t pick the right elevator, you may get
+lost.</li>
+<li>Aug - No new reviews.</li>
+<li>Jul - 1 review received, it was rated 5 stars.</li>
+<li>Jun - 3 reviews received, all were 5-star ratings.</li>
+<li>May - No new reviews.</li>
+<li>Apr - 2 reviews received, both were 5-star ratings.</li>
+<li>Mar - 5 reviews received, all were 5-star ratings.</li>
+<li>Jan and Feb - 4 reviews received, two were 5-star and other two
+reviews were 4-star ratings</li>
+</ul></li>
+<li>Profile views
+<ul>
+<li>Oct - 22,484</li>
+<li>Sep - 24,465</li>
+<li>Aug - 16,846</li>
+<li>Jul - 11,633</li>
+<li>Jun - 15,007</li>
+<li>May - 16,669</li>
+<li>Apr - 22,180</li>
+<li>Mar - 25,049</li>
+<li>Feb - 24,093</li>
+<li>Jan - 17,910</li>
+</ul></li>
+<li>Over 70% of the Google searches were preformed on desktop; while the
+rest were on mobile. The percentage of searches using desktop computers
+have slightly decreased since last fall.</li>
+</ul>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
