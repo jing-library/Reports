@@ -16,6 +16,40 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 Last compiled: `r Sys.Date()`
 
+# **December 2022**
+## Website
+* Updated hours for finals on the Google Knowledge Panel
+* Meeting with Ian on LibGuides stats on GA
+
+## Workshops / Training 
+* AI4LAM - 4 sessions
+
+
+## Research
+* Prepare for the podcast - new account on Buzzsprout; artwork, intro & extro music
+* Proposed to D4D 2023
+
+
+## Service
+* CALA Membership Committee: maintain membership database, monthly meeting, work on joint project with PR & Fundraising Committee
+* CALA PR & Fundraising Committee: 
+    * Update page for donation and calendar page
+    * Interview four CALA previous president and transcribe the talks
+    * Review and revise calendar flyer
+
+* IFLA SE: monthly meeting, update project page and satellite conference pages, respond to the question by email
+* TTU CFSA: Maintain & share distribution list
+
+
+## Others
+* OA data compile and report
+* download recital videos from Bilibili
+* HEB volunteer
+* Triaged and responded queries through website email
+* attended interview of Assessment Librarian
+
+
+
 # **November 2022**
 ## Website
 * Continue updating personal librarians page
