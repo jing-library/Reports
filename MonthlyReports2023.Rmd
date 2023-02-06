@@ -1,0 +1,67 @@
+---
+title: "2023 Monthly Reports"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 2
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+Last compiled: `r Sys.Date()`
+
+# **January 2023**
+## Website
+* Updated the print maps by implementing suggestions from the Access and UX/Website Team 
+* Updated Personal Librarians page - added acronyms so users can search the acronyms of their school, college, department, or subject area to locate their personal librarians and some minor updates
+* Updated maps for S5, Research Hub page
+* Maintained hours for the new semester
+* Update the asset for computer availability table
+* Some setup work for the new developer
+* Worked on the request from the Development on the Support us pages
+* Reviewed feedback on Video Tutorials from UX and worked on potential solutions
+* Updated the LibAnswer and LibChat widgets due to the changes by SpringShare
+* GA data analysis
+
+## Teaching
+* Planning R workshop - updating slides and scripts
+* Co-teach Tableau
+
+
+## Workshops / Training 
+* Make with Inkscape
+* Note taking in Zotero: apply the Zettlekasten method
+
+## Research
+* Prepare for the podcast - look for possible host and platform
+* Keep working on paper about data literacy courses in MLIS
+* Testing ChatGPT - Use ChatGPT to generate web content for Grade 8 and mobile users
+* Read the book R for Data Science, 2nd version
+
+
+## Service
+* IFLA
+    + Webina: Created event page, circulated event information on distribution lists, and tracked registrations
+    + Satellite Conference: reviewed Call for Papers and created event pages
+
+* CALA
+    + Membership Committee: maintain membership database, process application for Dr. Li's scholarship
+    + PR & Fundraising Committee: interviewed 2 former CALA presidents and transcribed the talks; serve as guest editor for the special issue of IJoL
+    
+* TTU CFSA
+    + Prepared Chinese New Year party
+
+* UX/Website team meeting
+
+
+## Others
+* OA data compile and report
+* Triaged and responded queries through website email
+* Annual Review
+

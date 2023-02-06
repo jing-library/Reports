@@ -4,12 +4,14 @@ navbar:
   left:
     - text: "Home"
       href: index.html
+    - text: "2023 Monthly Reports"
+      href: MonthlyReports2023.html
+    - text: "2023 Stats"
+      href: Stats2023.html
     - text: "2022 Monthly Reports"
       href: MonthlyReports.html
     - text: "2022 Stats"
       href: Stats.html
-    - text: "2023 Stats"
-      href: Stats2023.html
     - text: "Stats Related"
       href: StatsRelated.html
 output_dir: "docs"
