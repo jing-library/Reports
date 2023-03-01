@@ -47,6 +47,164 @@ scopus_2022_march <- scopus_2022_march %>%
   filter(!DOI %in% DOI[duplicated(DOI)])
 
 ```
+## 2023 March
+Data was retrieved from Scopus on March 1st, 2023. 
+
+
+```{r, 2023-March-data-preparation}
+
+# read March data
+scopus_2023_march <- read_csv("data/scopus_20230301.csv")
+
+
+# select only columns relevant
+scopus_2023_march <- scopus_2023_march[c(1,3,4,5,12,13,15:17,19)]
+
+# rename columns
+names(scopus_2023_march)[c(1:10)] <- c("author", "title", "year", "source_title", "citations_2023_march", "DOI", "doc_type", "pub_stage", "oa_status_2023_march", "EID")
+
+
+# Replace NAs in citations and OA status, remove rows with missing or duplicated DOIs
+scopus_2023_march <- scopus_2023_march %>% 
+  replace_na(list(oa_status_2023_march = "Closed", citations_2023_march = 0)) %>% 
+  filter(!is.na(DOI)) %>% 
+  filter(!DOI %in% DOI[duplicated(DOI)]) %>% 
+  write_csv("data_intermediate/scopus_2023_march.csv")
+
+# read February data
+scopus_2023_february <- read_csv("data_intermediate/scopus_2023_february.csv")
+
+
+# records removed from 2022 March
+removed_202303 <- anti_join(scopus_2022_march, scopus_2023_march, by = "DOI") 
+removed_202303 <- removed_202303%>%
+  select(source_title, year, pub_stage, oa_status_2022_march, DOI) %>% 
+  arrange(source_title) %>% 
+  write_csv("data_intermediate/removed_202303.csv")
+
+# new records in 2023 March
+added_202303 <- anti_join(scopus_2023_march, scopus_2022_march, by = "DOI") 
+
+added_202303 <- added_202303 %>% 
+  select(source_title, year, pub_stage, oa_status_2023_march, DOI) %>%
+  arrange(source_title)
+
+# shared items of 2023 February and 2023 March
+main_202303 <- inner_join(scopus_2023_february, scopus_2023_march, by = "DOI")
+main_202303 <- main_202303[-c(11:14, 16, 17, 19)]
+
+names(main_202303)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_2023_february", "DOI", "doc_type", "pub_stage", "oa_status_2023_february", "EID", "citations_2023_march", "oa_status_2023_march")
+```
+* Number of records (Comparing with 2022 March)
+  After removing records with missing DOIs or duplicated DOIs, **9,896 records** were kept. **63 items** were removed from the data set of March 2022 and **140 items** were added. The total data change was **around 2.1%**.
+  
+* OA Status (Comparing with 2023 February)
+  * Comparing with 2023 February, the OA status of **134 items** changed. 35 OA items turned to be closed; while 12 items became open access. 
+  * **16 items turned green where 7 of them were closed items in Feburary**. 64 items lost their green status.
+
+```{r, 2023-March-findings}
+
+#---- Findings - OA Status ----
+
+oa_status_change_202303 <- main_202303 %>% 
+  select(title, source_title, year, oa_status_2023_february, oa_status_2023_march, DOI) %>%
+  filter(main_202303$oa_status_2023_february != main_202303$oa_status_2023_march) %>% 
+  arrange(source_title) 
+
+open2close_202303 <- oa_status_change_202303 %>% 
+  filter(oa_status_2023_march == "Closed") %>% 
+  write_csv("data_intermediate/open2close_202303.csv")
+
+close2open_202303 <- oa_status_change_202303 %>% 
+  filter(oa_status_2023_february == "Closed")
+
+# close2green_10 <- oa_status_change_10 %>% 
+#   filter(oa_status_september == "Closed" & oa_status_october == "All Open Access, Green") %>% 
+#   write_csv("data_intermediate/close2green_10.csv")
+
+
+close2green_202303 <- oa_status_change_202303 %>% 
+  filter(oa_status_2023_february == "Closed" & str_detect(oa_status_2023_march, "Green")) %>% 
+  write_csv("data_intermediate/close2green_202303.csv")
+
+  
+green_added_202303 <- oa_status_change_202303 %>% 
+  filter(!str_detect(oa_status_2023_february, "Green") & str_detect(oa_status_2023_march, "Green"))
+
+green_removed_202303 <- oa_status_change_202303 %>% 
+  filter(str_detect(oa_status_2023_february, "Green") & !str_detect(oa_status_2023_march, "Green"))
+```
+
+Publications by Year & by OA Status (Data Retrieved on March 1st, 2023)
+```{r, 2023-March-OA-status}
+
+# OA status in 2023 March
+main_202303 %>% 
+  separate(oa_status_2023_march, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year) %>% 
+  count(is_oa, oa_status) %>% 
+  mutate(percent = 100*n/sum(n)) %>% 
+  ungroup() %>% 
+  qhpvt(
+    c("is_oa","oa_status"), 
+    "year", 
+    c("Count" = "sum(n)", "%" = "sum(percent)"),
+    formats = list("%.0f", "%.2f"),
+    totals = list("is_oa" = "Total", "oa_status" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+```
+* Citations
+  * Comparing with 2023 Feburary, **2,275 items** obtained more citations, while 4 items saw a decrease in citation counts.
+  * Citations per paper(CpP) for OA publications was **36.02** while for closed publications was **around 13.16**. 
+
+```{r, 2023-March-citations}
+
+
+# Citations in 2023 March
+citations_change_202303 <- main_202303 %>% 
+  select(title, source_title, year, citations_2023_february, citations_2023_march) %>% 
+  filter(citations_2023_march - citations_2023_february != 0) %>% 
+  mutate(citations_diff = citations_2023_march - citations_2023_february, 
+         citations_percentage = ifelse(
+           citations_2023_february != 0, (citations_2023_march - citations_2023_february)*100 / citations_2023_february, ifelse(citations_2023_february == 0, NA, 999))) %>% 
+  arrange(desc(citations_diff), desc(citations_percentage))
+
+citations_error_202303 <- citations_change_202303 %>% 
+  select(title, source_title, year, citations_2023_february, citations_2023_march, citations_diff) %>%
+  filter(citations_diff < 0)
+
+citations_per_paper_202303 <- main_202303 %>%
+  separate(oa_status_2023_march, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(is_oa) %>% 
+  mutate(CpP_202303 = sum(citations_2023_march)/n())
+
+```
+Citations by Year & by OA Status (Data Retrieved on March 1st, 2023)
+
+```{r, 2023-March-citations-per-paper}
+
+
+# Citations per Paper in 2023 March
+main_202303 %>% 
+  separate(oa_status_2023_march, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year, oa_status) %>% 
+  mutate(citations_per_paper = round(sum(citations_2023_march)/n())) %>%   # added a new column the citations per paper
+  select(year, is_oa, oa_status, citations_2023_march, citations_per_paper) %>%  
+  ungroup() %>%  
+  qhpvt(
+    c("is_oa", "oa_status"), 
+    "year", 
+    c("Count" = "n()", "CpP" = "sum(citations_per_paper)/n()"),
+    formats = list("%.0f", "%.0f"),
+    totals = list("oa_status" = "Total", "Year" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+```
+
 
 
 ## 2023 February
@@ -100,7 +258,7 @@ names(main_202302)[c(1:12)] <- c("author", "title", "year", "source_title", "cit
 * Number of records (Comparing with 2022 March)
   After removing records with missing DOIs or duplicated DOIs, **9,888 records** were kept. **60 items** were removed from the data set of March and **134 items** were added. The total data change was **around 2.0%**.
   
-* OA Status (Comparing with 2022 December)
+* OA Status (Comparing with 2023 January)
   * Comparing with 2023 January, the OA status of **79 items** changed. 14 OA items turned to be closed; while 24 items became open access. 
   * **12 items turned green where 4 of them were closed items in January**. 5 items lost their green status.
 
