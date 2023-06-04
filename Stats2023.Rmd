@@ -48,6 +48,246 @@ scopus_2022_march <- scopus_2022_march %>%
 
 ```
 
+## 2023 June
+Data was retrieved from Scopus on June 2nd, 2023. It seemed that Scopus made some changes in their bibliographic data (csv):
+* Data quality improved - CSV files can be opened without errors. I had to manually fix mismatched cells in MS Excel.
+* A new column "Author Full Name" is added
+* OA Status: 
+** "Open Access" is added to each OA status, for example, "Gold" became "Gold Open Access" this month
+** alphabetically ordered
+** separator changed from "," to ";"
+
+
+```{r, 2023-June-data-preparation}
+
+# read June data
+scopus_2023_june <- read_csv("data/scopus_20230602.csv")
+
+
+# select only columns relevant
+scopus_2023_june <- scopus_2023_june[c(1,4,5,6,13,14,16:18,20)]
+
+# rename columns
+names(scopus_2023_june)[c(1:10)] <- c("author", "title", "year", "source_title", "citations_2023_june", "DOI", "doc_type", "pub_stage", "oa_status_2023_june", "EID")
+
+
+# Replace NAs in citations and OA status, remove rows with missing or duplicated DOIs
+scopus_2023_june <- scopus_2023_june %>% 
+  replace_na(list(oa_status_2023_june = "Closed", citations_2023_june = 0)) %>% 
+  filter(!is.na(DOI)) %>% 
+  filter(!DOI %in% DOI[duplicated(DOI)]) %>% 
+  write_csv("data_intermediate/scopus_2023_june.csv")
+
+# read May data
+scopus_2023_may <- read_csv("data_intermediate/scopus_2023_may.csv")
+
+
+# records removed from 2022 March
+removed_202306 <- anti_join(scopus_2022_march, scopus_2023_june, by = "DOI") 
+removed_202306 <- removed_202306 %>%
+  select(source_title, year, pub_stage, oa_status_2022_march, DOI) %>% 
+  arrange(source_title) %>% 
+  write_csv("data_intermediate/removed_202306.csv")
+
+# new records in 2023 June
+added_202306 <- anti_join(scopus_2023_june, scopus_2022_march, by = "DOI") 
+
+added_202306 <- added_202306 %>% 
+  select(source_title, year, pub_stage, oa_status_2023_june, DOI) %>%
+  arrange(source_title)
+
+# shared items of 2023 May and 2023 June
+main_202306 <- inner_join(scopus_2023_may, scopus_2023_june, by = "DOI")
+main_202306 <- main_202306[-c(11:14, 16, 17, 19)]
+
+names(main_202306)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_2023_may", "DOI", "doc_type", "pub_stage", "oa_status_2023_may", "EID", "citations_2023_june", "oa_status_2023_june")
+```
+* Number of records (Comparing with 2022 March)
+  After removing records with missing DOIs or duplicated DOIs, **9,917 records** were kept. **75 items** were removed from the data set of March 2022 and **173 items** were added. The total data change was **around 2.5%**.
+  
+* OA Status (Comparing with 2023 May)
+  * Comparing with 2023 May, **489 items** changed their OA status. **Ten** OA items turned to be closed and **186** closed items became open access. 
+  * **138 item turned green where 31 of them were closed items in May**. **12** items lost their green status.
+
+```{r, 2023-June-findings}
+
+#---- Findings - OA Status ----
+
+# Scopus changed the "OA Status" in data from "Green" to "Green Open Access", from "Hybrid Gold" to "Hybrid Gold Open Access", from "Gold" to "Gold Open Access", and from "Bronze" to "Bronze Open Access". Update the column oa_status_2023_june by removing "Open Access" for comparison purposes
+
+main_202306 <- main_202306 %>% 
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, "Hybrid Gold Open Access","Hybrid Gold")) %>%
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, "Gold Open Access","Gold")) %>% 
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, "Green Open Access","Green")) %>%
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, "Bronze Open Access","Bronze")) %>% 
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, ";",",")) %>% 
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, ";",",")) 
+
+# df$Modules <- sapply(strsplit(as.character(df$Modules), ',\\s*'), function(x) toString(sort(x)))
+
+main_202306$oa_status_2023_may <- sapply(strsplit(as.character(main_202306$oa_status_2023_may),',\\s*'), function(x) toString(sort(x)))
+
+oa_status_change_202306 <- main_202306 %>% 
+  select(title, source_title, year, oa_status_2023_may, oa_status_2023_june, DOI) %>%
+  filter(main_202306$oa_status_2023_may != main_202306$oa_status_2023_june) %>% 
+  arrange(source_title) 
+
+open2close_202306 <- oa_status_change_202306 %>% 
+  filter(oa_status_2023_june == "Closed") %>% 
+  write_csv("data_intermediate/open2close_202306.csv")
+
+close2open_202306 <- oa_status_change_202306 %>% 
+  filter(oa_status_2023_may == "Closed")
+
+# close2green_10 <- oa_status_change_10 %>% 
+#   filter(oa_status_september == "Closed" & oa_status_october == "All Open Access, Green") %>% 
+#   write_csv("data_intermediate/close2green_10.csv")
+
+
+close2green_202306 <- oa_status_change_202306 %>% 
+  filter(oa_status_2023_may == "Closed" & str_detect(oa_status_2023_june, "Green")) %>% 
+  write_csv("data_intermediate/close2green_202306.csv")
+
+  
+green_added_202306 <- oa_status_change_202306 %>% 
+  filter(!str_detect(oa_status_2023_may, "Green") & str_detect(oa_status_2023_june, "Green"))
+
+green_removed_202306 <- oa_status_change_202306 %>% 
+  filter(str_detect(oa_status_2023_may, "Green") & !str_detect(oa_status_2023_june, "Green"))
+
+## OA status changes comparing with March 2022
+
+oa_comp_202203_202306 <- inner_join(scopus_2022_march, scopus_2023_june, by = "DOI")
+oa_comp_202203_202306 <- oa_comp_202203_202306[-c(11:14, 16, 17, 19)]
+names(oa_comp_202203_202306)[c(1:12)] <- c("author", "title", "year", "source_title", "citations_2022_march", "DOI", "doc_type", "pub_stage", "oa_status_2022_march", "EID", "citations_2023_june", "oa_status_2023_june")
+
+
+# Modify "OA Status" to match the changes by Scopus 
+oa_comp_202203_202306 <- oa_comp_202203_202306 %>% 
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, "Hybrid Gold Open Access","Hybrid Gold")) %>%
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, "Gold Open Access","Gold")) %>% 
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, "Green Open Access","Green")) %>%
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, "Bronze Open Access","Bronze")) %>% 
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, ";",",")) %>% 
+  mutate(oa_status_2023_june = str_replace(oa_status_2023_june, ";",",")) 
+
+# df$Modules <- sapply(strsplit(as.character(df$Modules), ',\\s*'), function(x) toString(sort(x)))
+
+oa_comp_202203_202306$oa_status_2022_march <- sapply(strsplit(as.character(oa_comp_202203_202306$oa_status_2022_march),',\\s*'), function(x) toString(sort(x)))
+
+
+oa_status_change_202203_202306 <- oa_comp_202203_202306 %>% 
+  select(title, source_title, year, oa_status_2022_march, oa_status_2023_june, DOI) %>%
+  filter(oa_comp_202203_202306$oa_status_2022_march != oa_comp_202203_202306$oa_status_2023_june) %>% 
+  arrange(source_title)
+
+open2close_202203_202306 <- oa_status_change_202203_202306 %>% 
+  filter(oa_status_2023_june == "Closed") %>% 
+  write_csv("data_intermediate/open2close_202203_202306.csv")
+
+close2open_202203_202306 <- oa_status_change_202203_202306 %>% 
+  filter(oa_status_2022_march == "Closed")
+
+
+close2green_202203_202306 <- oa_status_change_202203_202306 %>% 
+  filter(oa_status_2022_march == "Closed" & str_detect(oa_status_2023_june, "Green")) %>% 
+  write_csv("data_intermediate/close2green_202203_202306.csv")
+
+  
+green_added_202203_202306 <- oa_status_change_202203_202306 %>% 
+  filter(!str_detect(oa_status_2022_march, "Green") & str_detect(oa_status_2023_june, "Green"))
+
+green_removed_202203_202306 <- oa_status_change_202203_202306 %>% 
+  filter(str_detect(oa_status_2022_march, "Green") & !str_detect(oa_status_2023_june, "Green"))
+
+gold_added_202203_202306_1 <- oa_status_change_202203_202306 %>% 
+  filter(!str_detect(oa_status_2022_march, ("Gold")) & str_detect(oa_status_2023_june, "Gold")) %>% 
+  write_csv("data_intermediate/gold_added_202203_202306_1.csv")
+
+gold_added_202203_202306_2 <- oa_status_change_202203_202306 %>% 
+  filter(str_detect(oa_status_2022_march, ("Hybrid Gold")) & str_detect(oa_status_2023_june, "Gold")) %>% 
+  write_csv("data_intermediate/gold_added_202203_202306_2.csv")
+
+length(unique(oa_comp_202203_202306$source_title))
+
+h_gold_added_202203_202306 <- oa_status_change_202203_202306 %>% 
+  filter(!str_detect(oa_status_2022_march, ("Gold")) & str_detect(oa_status_2023_june, "Hybrid Gold"))
+
+# See report of May 2023 - 13 articles previously published as closed or green, later turned to be hybrid gold. it can be errors in data.
+
+```
+
+Publications by Year & by OA Status (Data Retrieved on June 2nd, 2023)
+
+```{r, 2023-June-OA-status}
+
+# OA status in 2023 June
+main_202306 %>% 
+  separate(oa_status_2023_june, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year) %>% 
+  count(is_oa, oa_status) %>% 
+  mutate(percent = 100*n/sum(n)) %>% 
+  ungroup() %>% 
+  qhpvt(
+    c("is_oa","oa_status"), 
+    "year", 
+    c("Count" = "sum(n)", "%" = "sum(percent)"),
+    formats = list("%.0f", "%.2f"),
+    totals = list("is_oa" = "Total", "oa_status" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+```
+* Citations
+  * Comparing with 2023 May, **2,649 items** obtained more citations, while **31 items** saw a decrease in citation counts.
+  * Citations per paper(CpP) for OA publications was **37.47** while for closed publications was **around 13.91**. 
+
+```{r, 2023-June-citations}
+
+
+# Citations in 2023 June
+citations_change_202306 <- main_202306 %>% 
+  select(title, source_title, year, citations_2023_may, citations_2023_june) %>% 
+  filter(citations_2023_june - citations_2023_may != 0) %>% 
+  mutate(citations_diff = citations_2023_june - citations_2023_may, 
+         citations_percentage = ifelse(
+           citations_2023_may != 0, (citations_2023_june - citations_2023_may)*100 / citations_2023_may, ifelse(citations_2023_may == 0, NA, 999))) %>% 
+  arrange(desc(citations_diff), desc(citations_percentage))
+
+citations_error_202306 <- citations_change_202306 %>% 
+  select(title, source_title, year, citations_2023_may, citations_2023_june, citations_diff) %>%
+  filter(citations_diff < 0)
+
+citations_per_paper_202306 <- main_202306 %>%
+  separate(oa_status_2023_june, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(is_oa) %>% 
+  mutate(CpP_202306 = sum(citations_2023_june)/n())
+
+```
+Citations by Year & by OA Status (Data Retrieved on June 2nd, 2023)
+
+```{r, 2023-June-citations-per-paper}
+
+
+# Citations per Paper in 2023 June
+main_202306 %>% 
+  separate(oa_status_2023_june, c("is_oa", "oa_status", "ex_green"), sep = ", ") %>% 
+  replace_na(list(oa_status = "Closed")) %>% 
+  group_by(year, oa_status) %>% 
+  mutate(citations_per_paper = round(sum(citations_2023_june)/n())) %>%   # added a new column the citations per paper
+  select(year, is_oa, oa_status, citations_2023_june, citations_per_paper) %>%  
+  ungroup() %>%  
+  qhpvt(
+    c("is_oa", "oa_status"), 
+    "year", 
+    c("Count" = "n()", "CpP" = "sum(citations_per_paper)/n()"),
+    formats = list("%.0f", "%.0f"),
+    totals = list("oa_status" = "Total", "Year" = "Total"),
+    totalStyle = list("font-weight"="bold")
+    )
+```
+
 ## 2023 May
 Data was retrieved from Scopus on May 1st, 2023. 
 
