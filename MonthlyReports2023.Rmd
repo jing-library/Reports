@@ -65,3 +65,303 @@ Last compiled: `r Sys.Date()`
 * Triaged and responded queries through website email
 * Annual Review
 
+# **February 2023**
+## Website
+* Updated the slideshow for BCC library and hid the intercultural information page
+* Meeting with RIO and UX on tutorials page; set up GA for the tutorials page
+* Check the mobile display for Dylan's work
+
+## Teaching
+* Using R for text mining: prepared the demo, collected feedback, updated coursework based on the feedback
+* R for beginners: updated coursework, prepared the workshops, and ran session 1 and 2
+## Workshops / Training
+* Webinar - How to take smart notes
+* Conference - UN Open Science Conference
+* Webinar - Using ChatGPT to Engage in Library Instruction by Ray Pun
+* IFLA SE webinar - Key Performance Indicators in Evaluation and Assessment of Library and Information Services by Sherine Eid
+## Research
+* Reading the book R for Data Science 2nd ed.
+* Meeting with Amy Jiang on a project to analyze online reference transcripts
+## Service
+* IFLA SE: announced upcoming webinar; updated SE website; attended monthly meeting and satellite meeting steering committee meeting
+* Assessment Team meeting
+## Others
+* OA data compile and report
+
+# **March 2023**
+## Website
+* Tutorials page: read FAQs and online chat transcripts to identify possible video tutorial needs; meeting with RIO and UX; implemented suggested changes; launched the updates
+## Teaching
+* R for beginners: prepared the workshops; ran sessions 3 to 6; responded to follow-up questions
+
+## Workshops / Training
+* Attended Designing for Digital (D4D) Conference
+* Webinar: LAA Automated Accessibility Testing: Advantages and Pitfalls
+* Workshop on Archive-It ARS at Pittsburgh
+* Carpentry Collaborative Lesson Development
+* Webinar: Understanding and Evaluating Governmental Data (U.S. and International)
+
+## Research
+* Podcast: prepared and discussed on running a podcast
+* Prepared and submitted a presentation proposal for the IFLA SE Satellite meeting
+
+## Service
+* CALA PR & Fundraising Committee
+    + Editing work for the IJoL special issue
+    + Interviewed 2 CALA previous presidents, transcribed the interviews, and created metadata for the interviews
+    + summarized donation
+* CALA Membership Committee
+    + approved member applications and contacted student members for scholarship
+    + batch input members from the China mainland
+* IFLA SE
+    + Monthly meeting
+    + Worked on the development of the website for the Satellite meeting
+    + supported the workshop
+* D4D Conf.: volunteer
+* Contract review team (agreed to serve)
+
+## Others
+* OA data compile and report
+
+# **April 2023**
+## Website
+* Giving to Libraries: meeting with the Development Dept. and discussed with Dylan on the design and implimentaion details
+* Updated page for CAS SciFinder, personal librarians page, study spaces page, BCC lib pages, library internal page, and the faculty page, 
+* Updated Google Analytics for library sites
+* Update the search box on the library homepage - removing redudent codes to speed up
+* Finished Silktide intro courses and fixing website problems based on the Silktide report
+* Updated the Alert page code based on suggestions from ChatGPT
+* Discussed with Dylan on the library maps
+* Study the access to the Mediasite for the Tutorials page
+* Troubleshooting the link to WoS
+
+## Workshops / Training
+* Webinar: Scholarly Communication in Crisis: Research Integrity and Open Scholarship
+* Webinar: High-Impact Teaching: What can we learn from Teaching and Learning Centers to support faculty and staff in creating high-quality HIPs for our students?
+* Online course: Project Management
+* Webinar: Communicating your Assessment Data through Visualization
+* Webinar: Commercial Data Quality Issue
+
+## Research
+* Worked on the proposal for the CALA poster session
+* Read literature for the book chapter, "Data Skills Taught On Campus" for the book "Data Culture in Academic Libraries"
+* Systematic Review: 
+    + learning systematic review and preparing procedure documents
+    + meeting with faculty and his students on the procedures of the systematic review
+* Prepared for the presentation for IFLA SE Satellite meeting - Using ChatGPT to evaluate and improve the library website
+
+## Service
+* CALA PR & Fundraising Committee
+    + Editing work for the IJoL special issue; meeting with the editors-in-chief to discuss issues with the special issue; drafted editorial for the special issue
+    + Finalized metadata for the interviews
+* CALA Membership Committee
+    + approved member applications and contacted student members for scholarship
+    + batch input members from the China mainland
+    + prepared the list of members for the 2023 CALA Election
+    + Reviewed and responded to the announcement draft
+* IFLA SE
+    + Updated and launched the website for the Satellite meeting
+    + Updated the website for the SE section
+* UX/Website Team meeting
+* Assessment Team meeting
+* CFSA Leadership meeting
+
+## Others
+* Attended TTU DH Group meeting
+* Applied for the travel fund
+
+
+# **May 2023**
+## Website
+* updated Tutorials page
+* Attended the meeting, Accessibility Awareness, held by the Central IT Web Team
+* Troubleshooting for the issue, one submission trigers 2 emails, in the LibWizard form
+* minor updates of the library web pages: building service checklist, locker's page, personal librarians pageqa
+
+## Workshops / Training
+* Attended online course Project Management
+* Follow-up meeting with the Archive-It ARCH group
+
+## Research
+* book chapter, "Data Skills Taught On Campus": literature review, collected, processed and analyzed data
+* Systematic review: meeting with the faculty & his students, wrote psudo-code, review student's search strategy
+* drafted a proposal for the IFLA conf. - Systematic review of ChatGPT in libraries
+
+## Service
+* CALA PR & Fundraising Committee
+    + Editing work for the IJoL special issue; revise the editorial for the special issue; updated the cover for the special issue
+    + Report of the interviews with previous CALA presidents
+* CALA Membership Committee
+    + approved member applications
+* IFLA SE
+    + Monthly meeting
+    + Updated the website for the Satellite meeting and promoted the satellite meeting
+* UX/Website Team meeting
+* Southeast Data Librarians Symposium (SEDLS) planning committee meeting
+* TTU CFSA: updated website
+
+## Others
+* applied for visa to Netherlands for the IFLA Conf.
+* attended CFSA event - grant writing and collaboration
+* Help identify records of Chinese document in the stack
+* OA data compile and report
+
+# **June 2023**
+## Website
+* Updated DEI pages
+* Updated borrowing policies page, profile page
+* Added New Program Proposals and Accreditation Help to the Faculty page
+* changed access group for the Building Services dept. 
+* finalized Google Analytics updates
+
+## Workshops / Training
+* Webinar: 2023 NISO Humanities Roundtable
+* Webinar: Accessibility Summer Camp
+
+## Research
+* book chapter, "Data Skills Taught On Campus": reviewed syllabi
+* Reference chat analysis: meeting with collaborators and started to collect data
+* systematic review: meeting with students, evaluated search strategies, and review students' work
+* leadership - motivation: using ChatGPT to identify themes from each question of the CALA president interviews
+* proposal drafted and submitted for the book 
+
+## Service
+* CALA PR & Fundraising Committee
+    + special issue fialized and published
+    + reviewed the annual report for the Committee
+* IFLA SE
+    + monthly meeting
+    + updated both websites for SE section and Satellite meeting
+* Assessment Team meeting
+* UX/Website Team meeting
+* CALA membership Committee: finalized committee work
+
+## Others
+* OA data compile and report
+
+# **July 2023**
+## Website
+* Double check DEI content on library's website
+
+## Workshops / Training
+* attended workshops on text analysis organized by Text Analysis Pedagogy Institute from Constellate
+    + Python Basics
+    + Pandas
+    + spaCy
+    + Finding word meaning
+    + web scraping
+* started to watch Harvard CS 50 
+
+## Research
+* book chapter, "Data Skills Taught On Campus": finalized and submitted to editors
+* IFLA SE Satellite meeting: prepared presentation
+
+## Service
+* Meeting with IJoL for serving on editorial board
+* Assessment Team: worked on Reach Report
+* UX/Website Team meeting
+* IFLA SE Satellite meeting planning committee meetings
+* SEDLS planning committee meetings: review proposals
+
+## Others
+* Help Chinese book cataloging
+
+# **August 2023**
+## Workshops / Training
+* attended workshops on text analysis organized by Text Analysis Pedagogy Institute from Constellate
+    + spaCy
+    + Tools for taming text
+    + Teaching data literacy
+
+## Research
+* IFLA SE satellite meeting and IFLA Congress (from Aug. 15 - 25)
+
+# **September 2023**
+## Website
+* minor updates on library maps, Digital Scholarship Lab pages, OA forms, development page
+* work on the style of the chatbot on the homepage
+
+## Teaching
+* R for Beginners: preparation and 6 sessions
+* responded to student queries on R
+
+## Workshops / Training
+* Audit ENGR 1330
+* Constellate webinar: What can you do with word counts
+* webinar: CLEARer Dialogues with AI: unpacking prompt engineering for librarians
+* Constellate webinar: Introduction to Language Models: also-known-as, how does ChatGPT work?
+* Webinar: accessible maps
+* Webinar: Empowering Privacy-Centered Practices for Diverse Communities
+* Webinar: Dreaming of AI: Perspectives on AI Use in Cultural Heritage 
+
+## Research
+* Book chapter proposal accepted. started to work on Reference chat data analysis: meeting with coauthors, literature review, submitted layout to editors
+
+## Service
+* IFLA SE: summarized the Satellite meeting and the Congress - uploaded presentations to IFLA repository, updated SE and satellite meeting websites, etc.; attended division meeting
+* SEDLS planning committee: continued proposal review
+* CALA membership committee: worked on rebate for chapters
+* IJoL: worked on the Spring issue 2024: review and started editing process
+
+# **October 2023**
+## Website
+* worked on advanced search
+* minor updates: snack spot, link to IT ticket, etc. 
+
+## Teaching
+* Workshop on Tableau: review teaching materials
+* Responded to queries on R
+
+## Workshops / Training
+* Constellate webinar: Introduction to Language Models: also-known-as, how does ChatGPT work?
+* webinar: Exploring collaborations: Opportunities for data sharing and data skills training across organisations advocating for open science
+* webinar: Communication of Retractions, Removals, and Expressions of Concern (CREC) Recommended Practice Public Comment Webinar
+* Webinar: LLM and higher education
+
+## Research
+* Reference chat data analysis: literature review
+* Preparing for the book Using R in your research: read books on R; watched Harvard CS 50 recordings
+
+## Service
+* TTU CFSA welcome luncheon preparation
+* IFLA SE: monthly meeting
+* SEDLS planning committee: meetings
+* IJoL: review submissions
+
+# **November 2023**
+## Website
+* Updated newsletter and library hours
+
+## Teaching
+* Responded to queries on R
+
+## Workshops / Training
+* Graduate Writing Center’s Using Artificial Intelligence (AI) Writing Tools
+* Online course: ChatGPT Prompt Engineering for Developers
+* Webinar: the role of generative AI in LIS publishing: opporutnities & challenges
+* Webinar: Reimagining Libraries: Exploring the AI & VR Revolution in Library Services
+
+## Research
+* Reference chat data analysis: literature review, data processing, manual labelling, IRB, and discussion with coauthors
+* Book (Using R in your research): reading and started to work on the chapter: using generative AI for coding assistance
+
+## Service
+* IJoL: review submission, editorial board meeting
+* IFLA SE Section: worked on survey for preferred communication
+* UX/Website Team meeting
+
+# **December 2023**
+## Website
+* fix broken links on the forms page
+* Add a new tab on the homepage for Faculty Services
+
+## Workshops / Training
+* ASC Live with Stephen Cutchins, Senior Accessibility Manager
+* NISO Webinar: Trend Spotting, Trend Setting
+
+## Research
+* Reference chat data analysis: data processing and sentiment analysis
+
+## Service
+* IFLA SE Section monthly meeting
+* UX/Website Team meeting
