@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>2023 Monthly Reports</title>
+
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Reports</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="MonthlyReports2023.html">2023 Monthly Reports</a>
+</li>
+<li>
+  <a href="Stats2023.html">2023 Stats</a>
+</li>
+<li>
+  <a href="MonthlyReports.html">2022 Monthly Reports</a>
+</li>
+<li>
+  <a href="Stats.html">2022 Stats</a>
+</li>
+<li>
+  <a href="StatsRelated.html">Stats Related</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">2023 Monthly Reports</h1>
+
+</div>
+
+
+<p>Last compiled: 2024-07-01</p>
+<div id="january-2023" class="section level1">
+<h1><strong>January 2023</strong></h1>
+<div id="website" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Updated the print maps by implementing suggestions from the Access
+and UX/Website Team</li>
+<li>Updated Personal Librarians page - added acronyms so users can
+search the acronyms of their school, college, department, or subject
+area to locate their personal librarians and some minor updates</li>
+<li>Updated maps for S5, Research Hub page</li>
+<li>Maintained hours for the new semester</li>
+<li>Update the asset for computer availability table</li>
+<li>Some setup work for the new developer</li>
+<li>Worked on the request from the Development on the Support us
+pages</li>
+<li>Reviewed feedback on Video Tutorials from UX and worked on potential
+solutions</li>
+<li>Updated the LibAnswer and LibChat widgets due to the changes by
+SpringShare</li>
+<li>GA data analysis</li>
+</ul>
+</div>
+<div id="teaching" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>Planning R workshop - updating slides and scripts</li>
+<li>Co-teach Tableau</li>
+</ul>
+</div>
+<div id="workshops-training" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Make with Inkscape</li>
+<li>Note taking in Zotero: apply the Zettlekasten method</li>
+</ul>
+</div>
+<div id="research" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>Prepare for the podcast - look for possible host and platform</li>
+<li>Keep working on paper about data literacy courses in MLIS</li>
+<li>Testing ChatGPT - Use ChatGPT to generate web content for Grade 8
+and mobile users</li>
+<li>Read the book R for Data Science, 2nd version</li>
+</ul>
+</div>
+<div id="service" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>IFLA
+<ul>
+<li>Webina: Created event page, circulated event information on
+distribution lists, and tracked registrations</li>
+<li>Satellite Conference: reviewed Call for Papers and created event
+pages</li>
+</ul></li>
+<li>CALA
+<ul>
+<li>Membership Committee: maintain membership database, process
+application for Dr. Li’s scholarship</li>
+<li>PR &amp; Fundraising Committee: interviewed 2 former CALA presidents
+and transcribed the talks; serve as guest editor for the special issue
+of IJoL</li>
+</ul></li>
+<li>TTU CFSA
+<ul>
+<li>Prepared Chinese New Year party</li>
+</ul></li>
+<li>UX/Website team meeting</li>
+</ul>
+</div>
+<div id="others" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>OA data compile and report</li>
+<li>Triaged and responded queries through website email</li>
+<li>Annual Review</li>
+</ul>
+</div>
+</div>
+<div id="february-2023" class="section level1">
+<h1><strong>February 2023</strong></h1>
+<div id="website-1" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Updated the slideshow for BCC library and hid the intercultural
+information page</li>
+<li>Meeting with RIO and UX on tutorials page; set up GA for the
+tutorials page</li>
+<li>Check the mobile display for Dylan’s work</li>
+</ul>
+</div>
+<div id="teaching-1" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>Using R for text mining: prepared the demo, collected feedback,
+updated coursework based on the feedback</li>
+<li>R for beginners: updated coursework, prepared the workshops, and ran
+session 1 and 2 ## Workshops / Training</li>
+<li>Webinar - How to take smart notes</li>
+<li>Conference - UN Open Science Conference</li>
+<li>Webinar - Using ChatGPT to Engage in Library Instruction by Ray
+Pun</li>
+<li>IFLA SE webinar - Key Performance Indicators in Evaluation and
+Assessment of Library and Information Services by Sherine Eid ##
+Research</li>
+<li>Reading the book R for Data Science 2nd ed.</li>
+<li>Meeting with Amy Jiang on a project to analyze online reference
+transcripts ## Service</li>
+<li>IFLA SE: announced upcoming webinar; updated SE website; attended
+monthly meeting and satellite meeting steering committee meeting</li>
+<li>Assessment Team meeting ## Others</li>
+<li>OA data compile and report</li>
+</ul>
+</div>
+</div>
+<div id="march-2023" class="section level1">
+<h1><strong>March 2023</strong></h1>
+<div id="website-2" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Tutorials page: read FAQs and online chat transcripts to identify
+possible video tutorial needs; meeting with RIO and UX; implemented
+suggested changes; launched the updates ## Teaching</li>
+<li>R for beginners: prepared the workshops; ran sessions 3 to 6;
+responded to follow-up questions</li>
+</ul>
+</div>
+<div id="workshops-training-1" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Attended Designing for Digital (D4D) Conference</li>
+<li>Webinar: LAA Automated Accessibility Testing: Advantages and
+Pitfalls</li>
+<li>Workshop on Archive-It ARS at Pittsburgh</li>
+<li>Carpentry Collaborative Lesson Development</li>
+<li>Webinar: Understanding and Evaluating Governmental Data (U.S. and
+International)</li>
+</ul>
+</div>
+<div id="research-1" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>Podcast: prepared and discussed on running a podcast</li>
+<li>Prepared and submitted a presentation proposal for the IFLA SE
+Satellite meeting</li>
+</ul>
+</div>
+<div id="service-1" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>CALA PR &amp; Fundraising Committee
+<ul>
+<li>Editing work for the IJoL special issue</li>
+<li>Interviewed 2 CALA previous presidents, transcribed the interviews,
+and created metadata for the interviews</li>
+<li>summarized donation</li>
+</ul></li>
+<li>CALA Membership Committee
+<ul>
+<li>approved member applications and contacted student members for
+scholarship</li>
+<li>batch input members from the China mainland</li>
+</ul></li>
+<li>IFLA SE
+<ul>
+<li>Monthly meeting</li>
+<li>Worked on the development of the website for the Satellite
+meeting</li>
+<li>supported the workshop</li>
+</ul></li>
+<li>D4D Conf.: volunteer</li>
+<li>Contract review team (agreed to serve)</li>
+</ul>
+</div>
+<div id="others-1" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>OA data compile and report</li>
+</ul>
+</div>
+</div>
+<div id="april-2023" class="section level1">
+<h1><strong>April 2023</strong></h1>
+<div id="website-3" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Giving to Libraries: meeting with the Development Dept. and
+discussed with Dylan on the design and implimentaion details</li>
+<li>Updated page for CAS SciFinder, personal librarians page, study
+spaces page, BCC lib pages, library internal page, and the faculty
+page,</li>
+<li>Updated Google Analytics for library sites</li>
+<li>Update the search box on the library homepage - removing redudent
+codes to speed up</li>
+<li>Finished Silktide intro courses and fixing website problems based on
+the Silktide report</li>
+<li>Updated the Alert page code based on suggestions from ChatGPT</li>
+<li>Discussed with Dylan on the library maps</li>
+<li>Study the access to the Mediasite for the Tutorials page</li>
+<li>Troubleshooting the link to WoS</li>
+</ul>
+</div>
+<div id="workshops-training-2" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Webinar: Scholarly Communication in Crisis: Research Integrity and
+Open Scholarship</li>
+<li>Webinar: High-Impact Teaching: What can we learn from Teaching and
+Learning Centers to support faculty and staff in creating high-quality
+HIPs for our students?</li>
+<li>Online course: Project Management</li>
+<li>Webinar: Communicating your Assessment Data through
+Visualization</li>
+<li>Webinar: Commercial Data Quality Issue</li>
+</ul>
+</div>
+<div id="research-2" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>Worked on the proposal for the CALA poster session</li>
+<li>Read literature for the book chapter, “Data Skills Taught On Campus”
+for the book “Data Culture in Academic Libraries”</li>
+<li>Systematic Review:
+<ul>
+<li>learning systematic review and preparing procedure documents</li>
+<li>meeting with faculty and his students on the procedures of the
+systematic review</li>
+</ul></li>
+<li>Prepared for the presentation for IFLA SE Satellite meeting - Using
+ChatGPT to evaluate and improve the library website</li>
+</ul>
+</div>
+<div id="service-2" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>CALA PR &amp; Fundraising Committee
+<ul>
+<li>Editing work for the IJoL special issue; meeting with the
+editors-in-chief to discuss issues with the special issue; drafted
+editorial for the special issue</li>
+<li>Finalized metadata for the interviews</li>
+</ul></li>
+<li>CALA Membership Committee
+<ul>
+<li>approved member applications and contacted student members for
+scholarship</li>
+<li>batch input members from the China mainland</li>
+<li>prepared the list of members for the 2023 CALA Election</li>
+<li>Reviewed and responded to the announcement draft</li>
+</ul></li>
+<li>IFLA SE
+<ul>
+<li>Updated and launched the website for the Satellite meeting</li>
+<li>Updated the website for the SE section</li>
+</ul></li>
+<li>UX/Website Team meeting</li>
+<li>Assessment Team meeting</li>
+<li>CFSA Leadership meeting</li>
+</ul>
+</div>
+<div id="others-2" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>Attended TTU DH Group meeting</li>
+<li>Applied for the travel fund</li>
+</ul>
+</div>
+</div>
+<div id="may-2023" class="section level1">
+<h1><strong>May 2023</strong></h1>
+<div id="website-4" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>updated Tutorials page</li>
+<li>Attended the meeting, Accessibility Awareness, held by the Central
+IT Web Team</li>
+<li>Troubleshooting for the issue, one submission trigers 2 emails, in
+the LibWizard form</li>
+<li>minor updates of the library web pages: building service checklist,
+locker’s page, personal librarians pageqa</li>
+</ul>
+</div>
+<div id="workshops-training-3" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Attended online course Project Management</li>
+<li>Follow-up meeting with the Archive-It ARCH group</li>
+</ul>
+</div>
+<div id="research-3" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>book chapter, “Data Skills Taught On Campus”: literature review,
+collected, processed and analyzed data</li>
+<li>Systematic review: meeting with the faculty &amp; his students,
+wrote psudo-code, review student’s search strategy</li>
+<li>drafted a proposal for the IFLA conf. - Systematic review of ChatGPT
+in libraries</li>
+</ul>
+</div>
+<div id="service-3" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>CALA PR &amp; Fundraising Committee
+<ul>
+<li>Editing work for the IJoL special issue; revise the editorial for
+the special issue; updated the cover for the special issue</li>
+<li>Report of the interviews with previous CALA presidents</li>
+</ul></li>
+<li>CALA Membership Committee
+<ul>
+<li>approved member applications</li>
+</ul></li>
+<li>IFLA SE
+<ul>
+<li>Monthly meeting</li>
+<li>Updated the website for the Satellite meeting and promoted the
+satellite meeting</li>
+</ul></li>
+<li>UX/Website Team meeting</li>
+<li>Southeast Data Librarians Symposium (SEDLS) planning committee
+meeting</li>
+<li>TTU CFSA: updated website</li>
+</ul>
+</div>
+<div id="others-3" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>applied for visa to Netherlands for the IFLA Conf.</li>
+<li>attended CFSA event - grant writing and collaboration</li>
+<li>Help identify records of Chinese document in the stack</li>
+<li>OA data compile and report</li>
+</ul>
+</div>
+</div>
+<div id="june-2023" class="section level1">
+<h1><strong>June 2023</strong></h1>
+<div id="website-5" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Updated DEI pages</li>
+<li>Updated borrowing policies page, profile page</li>
+<li>Added New Program Proposals and Accreditation Help to the Faculty
+page</li>
+<li>changed access group for the Building Services dept.</li>
+<li>finalized Google Analytics updates</li>
+</ul>
+</div>
+<div id="workshops-training-4" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Webinar: 2023 NISO Humanities Roundtable</li>
+<li>Webinar: Accessibility Summer Camp</li>
+</ul>
+</div>
+<div id="research-4" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>book chapter, “Data Skills Taught On Campus”: reviewed syllabi</li>
+<li>Reference chat analysis: meeting with collaborators and started to
+collect data</li>
+<li>systematic review: meeting with students, evaluated search
+strategies, and review students’ work</li>
+<li>leadership - motivation: using ChatGPT to identify themes from each
+question of the CALA president interviews</li>
+<li>proposal drafted and submitted for the book</li>
+</ul>
+</div>
+<div id="service-4" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>CALA PR &amp; Fundraising Committee
+<ul>
+<li>special issue fialized and published</li>
+<li>reviewed the annual report for the Committee</li>
+</ul></li>
+<li>IFLA SE
+<ul>
+<li>monthly meeting</li>
+<li>updated both websites for SE section and Satellite meeting</li>
+</ul></li>
+<li>Assessment Team meeting</li>
+<li>UX/Website Team meeting</li>
+<li>CALA membership Committee: finalized committee work</li>
+</ul>
+</div>
+<div id="others-4" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>OA data compile and report</li>
+</ul>
+</div>
+</div>
+<div id="july-2023" class="section level1">
+<h1><strong>July 2023</strong></h1>
+<div id="website-6" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Double check DEI content on library’s website</li>
+</ul>
+</div>
+<div id="workshops-training-5" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>attended workshops on text analysis organized by Text Analysis
+Pedagogy Institute from Constellate
+<ul>
+<li>Python Basics</li>
+<li>Pandas</li>
+<li>spaCy</li>
+<li>Finding word meaning</li>
+<li>web scraping</li>
+</ul></li>
+<li>started to watch Harvard CS 50</li>
+</ul>
+</div>
+<div id="research-5" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>book chapter, “Data Skills Taught On Campus”: finalized and
+submitted to editors</li>
+<li>IFLA SE Satellite meeting: prepared presentation</li>
+</ul>
+</div>
+<div id="service-5" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>Meeting with IJoL for serving on editorial board</li>
+<li>Assessment Team: worked on Reach Report</li>
+<li>UX/Website Team meeting</li>
+<li>IFLA SE Satellite meeting planning committee meetings</li>
+<li>SEDLS planning committee meetings: review proposals</li>
+</ul>
+</div>
+<div id="others-5" class="section level2">
+<h2>Others</h2>
+<ul>
+<li>Help Chinese book cataloging</li>
+</ul>
+</div>
+</div>
+<div id="august-2023" class="section level1">
+<h1><strong>August 2023</strong></h1>
+<div id="workshops-training-6" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>attended workshops on text analysis organized by Text Analysis
+Pedagogy Institute from Constellate
+<ul>
+<li>spaCy</li>
+<li>Tools for taming text</li>
+<li>Teaching data literacy</li>
+</ul></li>
+</ul>
+</div>
+<div id="research-6" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>IFLA SE satellite meeting and IFLA Congress (from Aug. 15 - 25)</li>
+</ul>
+</div>
+</div>
+<div id="september-2023" class="section level1">
+<h1><strong>September 2023</strong></h1>
+<div id="website-7" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>minor updates on library maps, Digital Scholarship Lab pages, OA
+forms, development page</li>
+<li>work on the style of the chatbot on the homepage</li>
+</ul>
+</div>
+<div id="teaching-2" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>R for Beginners: preparation and 6 sessions</li>
+<li>responded to student queries on R</li>
+</ul>
+</div>
+<div id="workshops-training-7" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Audit ENGR 1330</li>
+<li>Constellate webinar: What can you do with word counts</li>
+<li>webinar: CLEARer Dialogues with AI: unpacking prompt engineering for
+librarians</li>
+<li>Constellate webinar: Introduction to Language Models: also-known-as,
+how does ChatGPT work?</li>
+<li>Webinar: accessible maps</li>
+<li>Webinar: Empowering Privacy-Centered Practices for Diverse
+Communities</li>
+<li>Webinar: Dreaming of AI: Perspectives on AI Use in Cultural
+Heritage</li>
+</ul>
+</div>
+<div id="research-7" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>Book chapter proposal accepted. started to work on Reference chat
+data analysis: meeting with coauthors, literature review, submitted
+layout to editors</li>
+</ul>
+</div>
+<div id="service-6" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>IFLA SE: summarized the Satellite meeting and the Congress -
+uploaded presentations to IFLA repository, updated SE and satellite
+meeting websites, etc.; attended division meeting</li>
+<li>SEDLS planning committee: continued proposal review</li>
+<li>CALA membership committee: worked on rebate for chapters</li>
+<li>IJoL: worked on the Spring issue 2024: review and started editing
+process</li>
+</ul>
+</div>
+</div>
+<div id="october-2023" class="section level1">
+<h1><strong>October 2023</strong></h1>
+<div id="website-8" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>worked on advanced search</li>
+<li>minor updates: snack spot, link to IT ticket, etc.</li>
+</ul>
+</div>
+<div id="teaching-3" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>Workshop on Tableau: review teaching materials</li>
+<li>Responded to queries on R</li>
+</ul>
+</div>
+<div id="workshops-training-8" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Constellate webinar: Introduction to Language Models: also-known-as,
+how does ChatGPT work?</li>
+<li>webinar: Exploring collaborations: Opportunities for data sharing
+and data skills training across organisations advocating for open
+science</li>
+<li>webinar: Communication of Retractions, Removals, and Expressions of
+Concern (CREC) Recommended Practice Public Comment Webinar</li>
+<li>Webinar: LLM and higher education</li>
+</ul>
+</div>
+<div id="research-8" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>Reference chat data analysis: literature review</li>
+<li>Preparing for the book Using R in your research: read books on R;
+watched Harvard CS 50 recordings</li>
+</ul>
+</div>
+<div id="service-7" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>TTU CFSA welcome luncheon preparation</li>
+<li>IFLA SE: monthly meeting</li>
+<li>SEDLS planning committee: meetings</li>
+<li>IJoL: review submissions</li>
+</ul>
+</div>
+</div>
+<div id="november-2023" class="section level1">
+<h1><strong>November 2023</strong></h1>
+<div id="website-9" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>Updated newsletter and library hours</li>
+</ul>
+</div>
+<div id="teaching-4" class="section level2">
+<h2>Teaching</h2>
+<ul>
+<li>Responded to queries on R</li>
+</ul>
+</div>
+<div id="workshops-training-9" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>Graduate Writing Center’s Using Artificial Intelligence (AI) Writing
+Tools</li>
+<li>Online course: ChatGPT Prompt Engineering for Developers</li>
+<li>Webinar: the role of generative AI in LIS publishing: opporutnities
+&amp; challenges</li>
+<li>Webinar: Reimagining Libraries: Exploring the AI &amp; VR Revolution
+in Library Services</li>
+</ul>
+</div>
+<div id="research-9" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>Reference chat data analysis: literature review, data processing,
+manual labelling, IRB, and discussion with coauthors</li>
+<li>Book (Using R in your research): reading and started to work on the
+chapter: using generative AI for coding assistance</li>
+</ul>
+</div>
+<div id="service-8" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>IJoL: review submission, editorial board meeting</li>
+<li>IFLA SE Section: worked on survey for preferred communication</li>
+<li>UX/Website Team meeting</li>
+</ul>
+</div>
+</div>
+<div id="december-2023" class="section level1">
+<h1><strong>December 2023</strong></h1>
+<div id="website-10" class="section level2">
+<h2>Website</h2>
+<ul>
+<li>fix broken links on the forms page</li>
+<li>Add a new tab on the homepage for Faculty Services</li>
+</ul>
+</div>
+<div id="workshops-training-10" class="section level2">
+<h2>Workshops / Training</h2>
+<ul>
+<li>ASC Live with Stephen Cutchins, Senior Accessibility Manager</li>
+<li>NISO Webinar: Trend Spotting, Trend Setting</li>
+</ul>
+</div>
+<div id="research-10" class="section level2">
+<h2>Research</h2>
+<ul>
+<li>Reference chat data analysis: data processing and sentiment
+analysis</li>
+</ul>
+</div>
+<div id="service-9" class="section level2">
+<h2>Service</h2>
+<ul>
+<li>IFLA SE Section monthly meeting</li>
+<li>UX/Website Team meeting</li>
+</ul>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

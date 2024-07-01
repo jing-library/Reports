@@ -2,7 +2,7 @@ name: "Reports"
 navbar:
   title: "Reports"
   left:
-    - text: "Home"
+    - text: "Homepage"
       href: index.html
     - text: "2024 Monthly Reports"
       href: MonthlyReports2024.html
